@@ -9,6 +9,11 @@ module.exports = {
       },
       fontFamily: {
         fredoka: ['var(--fredoka)'],
+        poor_Story: ['var(--poor_Story)'],
+      },
+      backgroundImage: {
+        'open': "url('~/public/open.png')",
+        'close': "url('~/public/close.png')",
       },
     },
   },
