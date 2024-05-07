@@ -15,6 +15,14 @@ module.exports = {
         'open': "url('~/public/open.png')",
         'close': "url('~/public/close.png')",
       },
+      keyframes: {
+        rotate: {
+          '100%': { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        rotate: 'rotate 5s linear infinite',
+      },
     },
   },
   plugins: [],
