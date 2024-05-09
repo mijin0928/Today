@@ -19,6 +19,9 @@ module.exports = {
         rotate: {
           '100%': { transform: 'rotate(360deg)' },
         },
+        translate: {
+          '100%': { transform: 'translateX(50px)' },
+        },
       },
       animation: {
         rotate: 'rotate 5s linear infinite',
