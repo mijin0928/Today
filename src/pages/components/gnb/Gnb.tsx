@@ -1,10 +1,15 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { GNB } from '@/constant/constant';
+import { GNB, animation } from '@/constant/constant';
 
 export default function Gnb() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
+  const isVisible = isOpen
+    ? 'visible translate-x-0 duration-500 w-2/4 h-full'
+    : 'invisible w-0 h-0 translate-x-full lg:translate-x-0 duration-500 lg:duration-0';
+  const isOpenMenu = isOpen ? 'bg-close' : 'bg-open';
 
   const handleGnbClick = (id: string) => {
     router.push(id);
@@ -39,14 +44,12 @@ export default function Gnb() {
   return (
     <nav>
       <ul
-        className={`${
-          isOpen ? 'block' : 'hidden'
-        } lg:block absolute lg:left-0 lg:top-[50%] right-0 lg:right-auto lg:translate-y-[-50%] w-[100%] lg:w-auto h-[100%] lg:h-auto bg-white lg:bg-transparent`}
+        className={`${isVisible} lg:visible absolute lg:left-0 lg:top-1/2 right-0 lg:right-auto lg:translate-y-[-50%] lg:w-auto lg:h-auto border-l lg:border-0 bg-white lg:bg-transparent`}
       >
         {GNB.map((gnb, i) => (
           <li
             key={i}
-            className={`mt-12 lg:mt-10 first:mt-20 lg:first:mt-0 pl-10 lg:pt-2 lg:pr-4 lg:pb-2 lg:pl-24 text-[1.5rem] lg:text-[2rem] md:text-[1.8rem] font-poor_Story border-b lg:border-0 border-inherit text-primary cursor-pointer hover:pl-[1.2rem] lg:hover:translate-x-[1.2rem] lg:bg-white`}
+            className={`mt-12 lg:mt-8 first:mt-24 lg:first:mt-0 pl-10 pb-2 lg:pt-4 lg:pr-4 lg:pb-4 lg:pl-28 text-2xl lg:text-[2rem] md:text-[1.8rem] font-poor_Story border-b lg:border-0 border-inherit text-primary cursor-pointer hover:pl-16 lg:hover:translate-x-5 lg:hover:pl-5 duration-300 lg:bg-white ${animation[i]}`}
             onClick={() => handleGnbClick(gnb.id)}
           >
             {gnb.item}
@@ -55,9 +58,7 @@ export default function Gnb() {
       </ul>
       <button
         type='button'
-        className={`lg:hidden overflow-hidden absolute right-0 w-[3rem] md:w-[4rem] h-[3rem] md:h-[4rem] z-[1] indent-[100%] whitespace-nowrap ${
-          isOpen ? 'bg-close' : 'bg-open'
-        } bg-no-repeat bg-cover`}
+        className={`${isOpenMenu} lg:hidden overflow-hidden absolute right-0 w-12 md:w-16 h-12 md:h-16 indent-[100%] whitespace-nowrap bg-no-repeat bg-cover`}
         onClick={handleOpenClick}
       >
         모바일 메뉴
