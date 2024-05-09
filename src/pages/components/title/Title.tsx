@@ -26,10 +26,10 @@ export default function Title() {
 
   return (
     <>
+      {end && <Gnb />}
       <h1 className='flex justify-center items-center h-screen font-fredoka text-5xl md:text-8xl lg:text-9xl text-primary'>
         {title}
       </h1>
-      {end && <Gnb />}
     </>
   );
 }
