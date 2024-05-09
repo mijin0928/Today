@@ -11,8 +11,7 @@ export default function Title() {
   useEffect(() => {
     const timer = setInterval(() => {
       if (count < TITLE.length) {
-        total += TITLE[count++];
-        setTitle(total);
+        setTitle(total += TITLE[count++]);
       } else {
         clearTimeout(timer);
         setEnd(true);
