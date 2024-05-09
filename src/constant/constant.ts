@@ -7,9 +7,9 @@ export const GNB = [
 ];
 
 export const animation = [
-  'animate-[translate_0.5s_linear_alternate]',
-  'animate-[translate_0.5s_linear_alternate_0.5s]',
-  'animate-[translate_0.5s_linear_alternate_0.8s]',
-  'animate-[translate_0.5s_linear_alternate_1.1s]',
-  'animate-[translate_0.5s_linear_alternate_1.4s]',
+  'animate-[translate_0.5s_ease_alternate]',
+  'animate-[translate_0.5s_ease_alternate_0.5s]',
+  'animate-[translate_0.5s_ease_alternate_0.8s]',
+  'animate-[translate_0.5s_ease_alternate_1.1s]',
+  'animate-[translate_0.5s_ease_alternate_1.4s]',
 ];
