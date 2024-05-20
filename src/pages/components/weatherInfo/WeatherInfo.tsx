@@ -1,34 +1,12 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { BASE_URL, KEY, WEATHER } from '@/constant/constant';
-import { useQuery } from '@tanstack/react-query';
-import { getWeather } from '../../api/api';
-
-interface PositionError {
-  readonly code: number;
-  readonly message: string;
-}
+import { WEATHER } from '@/constant/constant';
+import { useWeather } from '../../hooks/useWeather';
 
 export default function WeatherInfo() {
   const [description, setDescription] = useState('');
   const [id, setId] = useState(0);
-  const [weather, setWeather] = useState('');
-
-  const success = (pos: GeolocationPosition) => {
-    const latitude = pos.coords.latitude;
-    const longitude = pos.coords.longitude;
-
-    setWeather(`${BASE_URL}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`);
-  };
-
-  const error = (err: PositionError) => {
-    console.error(`${err.code}:${err.message}`);
-  };
-
-  const { data: weatherData, isLoading: weatherDataLoading } = useQuery({
-    queryKey: [weather],
-    queryFn: () => getWeather(weather),
-  });
+  const { success, error, weatherData, weatherDataLoading } = useWeather();
 
   useEffect(() => {
     if (weatherData) {
