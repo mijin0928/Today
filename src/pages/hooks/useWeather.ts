@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BASE_URL, KEY } from '@/constant/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getWeather } from '../api/api';
@@ -27,9 +27,11 @@ export function useWeather() {
     queryFn: () => getWeather(weather),
   });
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }, []);
+
   return {
-    success,
-    error,
     weatherData,
     weatherDataLoading,
   };

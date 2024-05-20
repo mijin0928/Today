@@ -6,7 +6,7 @@ import { useWeather } from '../../hooks/useWeather';
 export default function WeatherInfo() {
   const [description, setDescription] = useState('');
   const [id, setId] = useState(0);
-  const { success, error, weatherData, weatherDataLoading } = useWeather();
+  const { weatherData, weatherDataLoading } = useWeather();
 
   useEffect(() => {
     if (weatherData) {
@@ -17,8 +17,6 @@ export default function WeatherInfo() {
     if (weatherKo) {
       setDescription(weatherKo.description);
     }
-
-    navigator.geolocation.getCurrentPosition(success, error);
   }, [id, weatherData]);
 
   if (weatherDataLoading) return <div>로딩중</div>;
@@ -34,13 +32,11 @@ export default function WeatherInfo() {
       />
       <div className='text-primary text-center md:text-left'>
         <div className='relative'>
-            <p className='absolute left-[calc(50%_-_5.1rem)] md:left-0 min-[1200px]:inline-block text-[3.5rem] md:text-[4.3rem] text-white [clip-path:polygon(0_70%,_100%_50%,_100%_100%,_0%_100%)] animate-skew'>
+          <p className='absolute left-[calc(50%_-_5.1rem)] md:left-0 min-[1200px]:inline-block text-[3.5rem] md:text-[4.3rem] text-white [clip-path:polygon(0_70%,_100%_50%,_100%_100%,_0%_100%)] animate-skew'>
             {weatherData.name.split('-')[0]}
           </p>
-          <p className='min-[1200px]:inline-block text-[3.5rem] md:text-[4.3rem]'>
-            {weatherData.name.split('-')[0]}
-          </p>
-           <p className='absolute overflow-hidden min-[1200px]:inline-block left-[calc(50%_-_6.3rem)] md:left-[auto] h-[3rem] md:text-[4.5rem] min-[1200px]:ml-4 text-[3.5rem] text-white animate-skew'>
+          <p className='min-[1200px]:inline-block text-[3.5rem] md:text-[4.3rem]'>{weatherData.name.split('-')[0]}</p>
+          <p className='absolute overflow-hidden min-[1200px]:inline-block left-[calc(50%_-_6.3rem)] md:left-[auto] h-[3rem] md:text-[4.5rem] min-[1200px]:ml-4 text-[3.5rem] text-white animate-skew'>
             {weatherData.main.temp}
             <span className='text-[4rem] md:text-[4.3rem]'>&#8451;</span>
           </p>
