@@ -10,9 +10,6 @@ interface PositionError {
 }
 
 export default function WeatherInfo() {
-  const [icon, setIcon] = useState('');
-  const [name, setName] = useState('');
-  const [temp, setTemp] = useState(0);
   const [description, setDescription] = useState('');
   const [id, setId] = useState(0);
   const [weather, setWeather] = useState('');
@@ -28,53 +25,53 @@ export default function WeatherInfo() {
     console.error(`${err.code}:${err.message}`);
   };
 
-  const { data: WeatherData, isLoading: WeatherDataLoading } = useQuery({
+  const { data: weatherData, isLoading: weatherDataLoading } = useQuery({
     queryKey: [weather],
     queryFn: () => getWeather(weather),
   });
 
   useEffect(() => {
+    if (weatherData) {
+      setId(weatherData.weather[0].id);
+    }
+
     const weatherKo = WEATHER.find((weather) => weather.id === id);
     if (weatherKo) {
       setDescription(weatherKo.description);
     }
 
-    if (WeatherData) {
-      setName(WeatherData.name.split('-')[0]);
-      setIcon(WeatherData.weather[0].icon);
-      setTemp(WeatherData.main.temp);
-      setId(WeatherData.weather[0].id);
-    }
-
     navigator.geolocation.getCurrentPosition(success, error);
-  }, [id, WeatherData]);
+  }, [id, weatherData]);
 
-  if (WeatherDataLoading) return <div>로딩중</div>;
+  if (weatherDataLoading) return <div>로딩중</div>;
 
   return (
-    <div className='relative flex items-center gap-20'>
+    <div className='relative md:flex md:items-center md:gap-20'>
       <Image
-        className='rounded-full w-[20rem] h-[20rem]'
-        src={`/icons/${icon}.gif`}
-        width={100}
-        height={100}
+        className='w-[14rem] h-[14rem] md:w-[20rem] md:h-[20rem] m-auto md:m-0 rounded-full'
+        src={`/icons/${weatherData.weather[0].icon}.gif`}
+        width={0}
+        height={0}
         alt='오늘의 날씨'
       />
-      <div className='text-primary'>
+      <div className='text-primary text-center md:text-left'>
         <div className='relative'>
-          <p className='absolute left-0 top-0 text-[4.3rem] text-white [clip-path:polygon(0_70%,_100%_50%,_100%_100%,_0%_100%)] animate-skew'>
-            {name}
+            <p className='absolute left-[calc(50%_-_5.1rem)] md:left-0 min-[1200px]:inline-block text-[3.5rem] md:text-[4.3rem] text-white [clip-path:polygon(0_70%,_100%_50%,_100%_100%,_0%_100%)] animate-skew'>
+            {weatherData.name.split('-')[0]}
           </p>
-          <p className='inline-block text-[4.3rem]'>{name}</p>
-          <p className='absolute overflow-hidden right-[3.5rem] top-0 h-[50px] text-[4.3rem] text-white animate-skew'>
-            {temp}
+          <p className='min-[1200px]:inline-block text-[3.5rem] md:text-[4.3rem]'>
+            {weatherData.name.split('-')[0]}
           </p>
-          <p className='inline-block ml-2 text-[4.5rem]'>
-            {temp}
-            <span className='text-[4.3rem]'>&#8451;</span>
+           <p className='absolute overflow-hidden min-[1200px]:inline-block left-[calc(50%_-_6.3rem)] md:left-[auto] h-[3rem] md:text-[4.5rem] min-[1200px]:ml-4 text-[3.5rem] text-white animate-skew'>
+            {weatherData.main.temp}
+            <span className='text-[4rem] md:text-[4.3rem]'>&#8451;</span>
+          </p>
+          <p className='min-[1200px]:inline-block md:text-[4.5rem] min-[1200px]:ml-4 text-[3.5rem]'>
+            {weatherData.main.temp}
+            <span className='text-[4rem] md:text-[4.3rem]'>&#8451;</span>
           </p>
         </div>
-        <p className='mt-4 text-[2.8rem]'>{description}</p>
+        <p className='mt-4 text-[2.5rem] md:text-[2.8rem] break-keep'>{description}</p>
       </div>
     </div>
   );
