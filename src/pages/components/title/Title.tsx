@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Gnb from '../gnb/Gnb';
+import useSetInterval from '@/pages/hooks/useSetInterval';
 
 export default function Title() {
   const [title, setTitle] = useState('');
@@ -8,20 +9,14 @@ export default function Title() {
   let count = 0;
   let total = '';
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (count < TITLE.length) {
-        setTitle(total += TITLE[count++]);
-      } else {
-        clearTimeout(timer);
-        setEnd(true);
-      }
-    }, 300);
+  const timerRef = useSetInterval(() => {
+    setTitle((total += TITLE[count++]));
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+    if (count >= TITLE.length) {
+      clearInterval(timerRef.current);
+      setEnd(true);
+    }
+  }, 300);
 
   return (
     <>
