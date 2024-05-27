@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useSetInterval } from '@/pages/hooks/useSetInterval';
 
 export default function MainTitle({ title }: { title: string }) {
