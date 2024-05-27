@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import useSetInterval from '@/pages/hooks/useSetInterval';
+import { useState, useRef } from 'react';
+import { useSetInterval } from '@/pages/hooks/useSetInterval';
 
 export default function MainTitle({ title }: { title: string }) {
   const [dot, setDot] = useState('');
   const DOT = '...';
-  let count = 0;
-  let total = '';
+  const countRef = useRef(0);
+  const totalRef = useRef('');
   
   useSetInterval(() => {
-    setDot((total += DOT[count++]));
+    setDot((totalRef.current += DOT[countRef.current++]));
 
-    if (count > DOT.length) {
+    if (countRef.current > DOT.length) {
       setDot('');
-      total = '';
-      count = 0;
+      totalRef.current = '';
+      countRef.current = 0;
     }
   }, 400);
 
