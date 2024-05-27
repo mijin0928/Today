@@ -4,10 +4,7 @@ import { useSetInterval } from '@/pages/hooks/useSetInterval';
 export default function MainTitle({ title }: { title: string }) {
   const [dot, setDot] = useState('');
   const DOT = '...';
-  const countRef = useRef(0);
-  const totalRef = useRef('');
-  
-  useSetInterval(() => {
+  const { countRef, totalRef } = useSetInterval(() => {
     setDot((totalRef.current += DOT[countRef.current++]));
 
     if (countRef.current > DOT.length) {
