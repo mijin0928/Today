@@ -6,10 +6,7 @@ export default function Title() {
   const [title, setTitle] = useState('');
   const [end, setEnd] = useState(false);
   const TITLE: string = 'TODAY IS ...';
-  const countRef = useRef(0);
-  const totalRef = useRef('');
-
-  useSetInterval(() => {
+  const { countRef, totalRef } = useSetInterval(() => {
     countRef.current < TITLE.length ? setTitle((totalRef.current += TITLE[countRef.current++])) : setEnd(true);
   }, 300);
 
