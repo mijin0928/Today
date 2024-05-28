@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Title from './components/title/Title';
-
+import Fortune from './components/fortune/Fortune';
+import Layout from './components/layout/Layout';
+import MainTitle from './components/mainTitle/MainTitle';
 export default function Home() {
   return (
     <>
@@ -10,7 +12,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Title />
+      {/* <Title /> */}
+      <Layout>
+        <MainTitle title='운세'/>
+      <Fortune />
+      </Layout>
+    
     </>
   );
 }
