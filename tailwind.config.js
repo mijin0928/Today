@@ -12,8 +12,8 @@ module.exports = {
         poor_Story: ['var(--poor_Story)'],
       },
       backgroundImage: {
-        'open': "url('~/public/open.png')",
-        'close': "url('~/public/close.png')",
+        open: "url('~/public/open.png')",
+        close: "url('~/public/close.png')",
       },
       keyframes: {
         rotate: {
@@ -22,9 +22,14 @@ module.exports = {
         translate: {
           '100%': { transform: 'translateX(50px)' },
         },
+        skew: {
+          '0%': { transform: 'skew(-2deg) scale(1, 1.1)' },
+          '100%': { transform: 'skew(-8deg) scale(1, 1.1)' },
+        },
       },
       animation: {
         rotate: 'rotate 5s linear infinite',
+        skew: 'skew 1.2s linear infinite alternate',
       },
     },
   },

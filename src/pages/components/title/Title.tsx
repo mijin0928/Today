@@ -1,27 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Gnb from '../gnb/Gnb';
+import { useSetInterval } from '@/pages/hooks/useSetInterval';
 
 export default function Title() {
   const [title, setTitle] = useState('');
   const [end, setEnd] = useState(false);
   const TITLE: string = 'TODAY IS ...';
-  let count = 0;
-  let total = '';
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (count < TITLE.length) {
-        setTitle(total += TITLE[count++]);
-      } else {
-        clearTimeout(timer);
-        setEnd(true);
-      }
-    }, 300);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  const { countRef, totalRef } = useSetInterval(() => {
+    countRef.current < TITLE.length ? setTitle((totalRef.current += TITLE[countRef.current++])) : setEnd(true);
+  }, 300);
 
   return (
     <>
