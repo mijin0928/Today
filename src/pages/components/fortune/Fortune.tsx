@@ -1,7 +1,22 @@
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
+import { MongoClient } from 'mongodb';
 
-export default function Fortune() {
+export async function getStaticProps() {
+  const client = await MongoClient.connect('mongodb+srv://mijin:qlalf0928@cluster0.tdkhkxz.mongodb.net/');
+  const db = client.db('today');
+  const result = await db.collection('fortune').find().toArray();
+
+  client.close();
+
+  return {
+    props: {
+      result: JSON.stringify(result),
+    },
+  };
+}
+
+export default function Fortune({ result }: { result: string }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const handRef = useRef<HTMLImageElement | null>(null);
