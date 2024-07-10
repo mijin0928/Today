@@ -1,9 +1,30 @@
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
+import FortuneResult from './FortuneResult';
+import { MongoClient } from 'mongodb';
+import { Props } from '@/type/type';
 
-export default function Fortune() {
+export async function getStaticProps() {
+  const client = await MongoClient.connect('mongodb+srv://mijin:qlalf0928@cluster0.tdkhkxz.mongodb.net/');
+  const db = client.db('today');
+  const fortune = await db.collection('fortune').find().toArray();
+
+  client.close();
+
+  return {
+    props: {
+      fortune: fortune.map((fortune) => ({
+        id: fortune._id.toString(),
+        result: fortune.result,
+      })),
+    },
+  };
+}
+
+export default function Fortune({ fortune }: { fortune: Props[] }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
+  const [isResult, setIsResult] = useState(false);
   const handRef = useRef<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isTouchBall = isTouch ? 'animate-shake' : 'animate-none';
@@ -33,6 +54,14 @@ export default function Fortune() {
       }
     };
 
+    let timer: NodeJS.Timeout | undefined = undefined;
+    if (isTouch) {
+      timer = setTimeout(() => {
+        setIsResult(true);
+        document.body.style.cursor = 'default';
+      }, 3000);
+    }
+
     window.addEventListener('mousemove', (e) => {
       handleMove(e);
       handleOutSideMove(e);
@@ -43,8 +72,14 @@ export default function Fortune() {
         handleMove(e);
         handleOutSideMove(e);
       });
+
+      clearTimeout(timer);
     };
   }, [isTouch]);
+
+  if (isResult) {
+    return <FortuneResult fortune={fortune} />;
+  }
 
   return (
     <div className='text-center' ref={containerRef}>
