@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Title from './components/title/Title';
-import Fortune from './components/fortune/Fortune';
 import Layout from './components/layout/Layout';
 import MainTitle from './components/mainTitle/MainTitle';
 import { MongoClient } from 'mongodb';
+import FortuneResult from './components/fortune/FortuneResult';
 
 export async function getStaticProps() {
   const client = await MongoClient.connect('mongodb+srv://mijin:qlalf0928@cluster0.tdkhkxz.mongodb.net/');
@@ -36,7 +36,7 @@ export default function Home({fortune}) {
         <MainTitle title='운세' />
      
       </Layout> */}
-      <Fortune fortune={fortune}/>
+      <FortuneResult fortune={fortune}/>
     </>
   );
 }

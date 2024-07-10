@@ -18,6 +18,7 @@ module.exports = {
         open: "url('~/public/open.png')",
         close: "url('~/public/close.png')",
         paper: "url('~/public/paper.png')",
+        reset: "url('~/public/reset.png')",
       },
       keyframes: {
         rotate: {
