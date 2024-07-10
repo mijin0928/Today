@@ -1,27 +1,9 @@
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import FortuneResult from './FortuneResult';
-import { MongoClient } from 'mongodb';
 import { Props } from '@/type/type';
 
-export async function getStaticProps() {
-  const client = await MongoClient.connect('mongodb+srv://mijin:qlalf0928@cluster0.tdkhkxz.mongodb.net/');
-  const db = client.db('today');
-  const fortune = await db.collection('fortune').find().toArray();
-
-  client.close();
-
-  return {
-    props: {
-      fortune: fortune.map((fortune) => ({
-        id: fortune._id.toString(),
-        result: fortune.result,
-      })),
-    },
-  };
-}
-
-export default function Fortune({ fortune }: { fortune: Props[] }) {
+export default function FortuneIntro({ fortune }: { fortune: Props[] }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const [isResult, setIsResult] = useState(false);
