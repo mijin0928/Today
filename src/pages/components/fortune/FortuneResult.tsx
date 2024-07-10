@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Fortune from './Fortune';
 import { Props } from '@/type/type';
 
@@ -46,7 +45,7 @@ export default function FortuneResult({ fortune }: { fortune: Props[] }) {
             return (
               <p
                 key={item.id}
-                className='p-4 text-primary text-[1.25rem] bg-white max-sm:text-[1rem] max-md:max-h-[200px] max-sm:max-h-[80px] max-md:overflow-y-auto scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thin max-w-[45%]'
+                className='p-4 text-primary text-[1.25rem] bg-white max-sm:text-[1rem] max-md:max-h-[12.5rem] max-sm:max-h-[5rem] max-md:overflow-y-auto scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thin max-w-[45%]'
               >
                 {item.result}
               </p>
@@ -54,12 +53,9 @@ export default function FortuneResult({ fortune }: { fortune: Props[] }) {
           }
         })}
       </div>
-      <Image
-        className='absolute bottom-[2rem] right-[3rem] cursor-pointer max-sm:w-[60px]'
-        width={100}
-        height={100}
-        src='/reset.png'
-        alt='처음으로'
+      <button
+        className='w-[6.25rem] h-[6.25rem] bg-reset bg-no-repeat bg-center bg-cover absolute bottom-[2rem] right-[3rem] max-sm:w-[3.75rem] max-sm:h-[3.75rem]'
+        type='button'
         onClick={handleResetClick}
       />
     </>
