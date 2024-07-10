@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Title from './components/title/Title';
-import Fortune from './components/fortune/Fortune';
+import FortuneResult from './components/fortune/FortuneResult';
 import Layout from './components/layout/Layout';
 import MainTitle from './components/mainTitle/MainTitle';
 import { MongoClient } from 'mongodb';
@@ -8,17 +8,21 @@ import { MongoClient } from 'mongodb';
 export async function getStaticProps() {
   const client = await MongoClient.connect('mongodb+srv://mijin:qlalf0928@cluster0.tdkhkxz.mongodb.net/');
   const db = client.db('today');
-  const result = await db.collection('fortune').find().toArray();
+  const fortune = await db.collection('fortune').find().toArray();
 
   client.close();
 
   return {
     props: {
-      result: JSON.stringify(result),
-    },
+			fortune: fortune.map((fortune) => ({
+				id: fortune._id.toString(),
+				result: fortune.result,
+			})),
+		},
   };
 }
-export default function Home({result}) {
+
+export default function Home({fortune}) {
   return (
     <>
       <Head>
@@ -32,7 +36,7 @@ export default function Home({result}) {
         <MainTitle title='운세' />
      
       </Layout> */}
-      <Fortune result={result} />
+      <FortuneResult fortune={fortune} />
     </>
   );
 }
