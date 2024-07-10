@@ -1,15 +1,14 @@
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
-import FortuneResult from './FortuneResult';
-import { Props } from '@/type/type';
+import { useRouter } from 'next/router';
 
-export default function FortuneIntro({ fortune }: { fortune: Props[] }) {
+export default function Intro() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
-  const [isResult, setIsResult] = useState(false);
   const handRef = useRef<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isTouchBall = isTouch ? 'animate-shake' : 'animate-none';
+  const router = useRouter();
 
   const handleHandClick = () => {
     setIsVisible(true);
@@ -39,7 +38,7 @@ export default function FortuneIntro({ fortune }: { fortune: Props[] }) {
     let timer: NodeJS.Timeout | undefined = undefined;
     if (isTouch) {
       timer = setTimeout(() => {
-        setIsResult(true);
+        router.push('/fortune/result');
         document.body.style.cursor = 'default';
       }, 5000);
     }
@@ -58,10 +57,6 @@ export default function FortuneIntro({ fortune }: { fortune: Props[] }) {
       clearTimeout(timer);
     };
   }, [isTouch]);
-
-  if (isResult) {
-    return <FortuneResult fortune={fortune} />;
-  }
 
   return (
     <div className='text-center' ref={containerRef}>

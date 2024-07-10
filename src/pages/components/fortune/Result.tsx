@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
-import FortuneIntro from './FortuneIntro';
 import { Props } from '@/type/type';
+import { useRouter } from 'next/router';
 
-export default function FortuneResult({ fortune }: { fortune: Props[] }) {
+export default function Result({ fortune }: { fortune: Props[] }) {
   const [result, setResult] = useState(0);
-  const [reset, setReset] = useState(false);
   const random = Math.floor(Math.random() * fortune.length);
+  const router = useRouter();
 
   const handleResetClick = () => {
-    setReset(true);
+    router.push('/fortune');
   };
 
   useEffect(() => {
     setResult(random);
   }, []);
-
-  if (reset) {
-    return <FortuneIntro fortune={fortune} />;
-  }
 
   return (
     <>
