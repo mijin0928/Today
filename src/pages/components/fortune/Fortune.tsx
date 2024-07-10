@@ -59,7 +59,7 @@ export default function Fortune({ fortune }: { fortune: Props[] }) {
       timer = setTimeout(() => {
         setIsResult(true);
         document.body.style.cursor = 'default';
-      }, 3000);
+      }, 5000);
     }
 
     window.addEventListener('mousemove', (e) => {
