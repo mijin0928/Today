@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Title from './components/title/Title';
-import FortuneResult from './components/fortune/FortuneResult';
+import Fortune from './components/fortune/Fortune';
 import Layout from './components/layout/Layout';
 import MainTitle from './components/mainTitle/MainTitle';
 import { MongoClient } from 'mongodb';
@@ -36,7 +36,7 @@ export default function Home({fortune}) {
         <MainTitle title='운세' />
      
       </Layout> */}
-      <FortuneResult fortune={fortune} />
+      <Fortune fortune={fortune}/>
     </>
   );
 }
