@@ -1,24 +1,6 @@
-import { MongoClient } from 'mongodb';
 import { useEffect, useState } from 'react';
-import Fortune from './Fortune';
+import FortuneIntro from './FortuneIntro';
 import { Props } from '@/type/type';
-
-export async function getStaticProps() {
-  const client = await MongoClient.connect('mongodb+srv://mijin:qlalf0928@cluster0.tdkhkxz.mongodb.net/');
-  const db = client.db('today');
-  const fortune = await db.collection('fortune').find().toArray();
-
-  client.close();
-
-  return {
-    props: {
-      fortune: fortune.map((fortune) => ({
-        id: fortune._id.toString(),
-        result: fortune.result,
-      })),
-    },
-  };
-}
 
 export default function FortuneResult({ fortune }: { fortune: Props[] }) {
   const [result, setResult] = useState(0);
@@ -34,7 +16,7 @@ export default function FortuneResult({ fortune }: { fortune: Props[] }) {
   }, []);
 
   if (reset) {
-    return <Fortune fortune={fortune} />;
+    return <FortuneIntro fortune={fortune} />;
   }
 
   return (
