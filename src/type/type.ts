@@ -1,4 +1,4 @@
-export interface Props {
+export interface Item {
   id: string;
   result: string;
 }
