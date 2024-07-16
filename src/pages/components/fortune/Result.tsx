@@ -21,17 +21,6 @@ export default function Result() {
     document.body.style.cursor = 'default';
   }, []);
 
-  if (resultLoading)
-    return (
-      <Image
-        src='/loading.gif'
-        className='absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%]'
-        alt='로딩'
-        width={400}
-        height={400}
-      />
-    );
-
   return (
     <>
       <div className='relative flex justify-center items-center h-screen before:absolute before:top-2/4 before:left-2/4 before:translate-x-[-50%] before:translate-y-[-50%] before:w-screen before:h-[90vh] before:bg-paper before:bg-contain before:bg-no-repeat before:bg-center before:z-[-1]'>
