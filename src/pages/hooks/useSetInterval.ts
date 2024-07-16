@@ -15,3 +15,5 @@ export function useSetInterval(callback: () => void, seconds: number) {
 
   return { countRef, totalRef };
 }
+
+

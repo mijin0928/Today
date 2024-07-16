@@ -17,6 +17,8 @@ module.exports = {
       backgroundImage: {
         open: "url('~/public/open.png')",
         close: "url('~/public/close.png')",
+        paper: "url('~/public/paper.png')",
+        reset: "url('~/public/reset.png')",
       },
       keyframes: {
         rotate: {
@@ -41,5 +43,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 };
