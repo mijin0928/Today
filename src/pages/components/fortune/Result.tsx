@@ -1,34 +1,39 @@
-import { useEffect, useState } from 'react';
-import { Props } from '@/type/type';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { getResult } from '@/pages/api/api';
+import { useQuery } from '@tanstack/react-query';
+import { Props } from '@/type/type';
 
-export default function Result({ fortune }: { fortune: Props[] }) {
-  const [result, setResult] = useState(0);
-  const random = Math.floor(Math.random() * fortune.length);
+export default function Result() {
   const router = useRouter();
 
   const handleResetClick = () => {
     router.push('/fortune');
   };
 
+  const { data: resultData, isLoading: resultLoading } = useQuery({
+    queryKey: ['/api/data'],
+    queryFn: () => getResult(),
+  });
+
   useEffect(() => {
-    setResult(random);
+    document.body.style.cursor = 'default';
   }, []);
+
+  if (resultLoading) return;
 
   return (
     <>
       <div className='relative flex justify-center items-center h-screen before:absolute before:top-2/4 before:left-2/4 before:translate-x-[-50%] before:translate-y-[-50%] before:w-screen before:h-[90vh] before:bg-paper before:bg-contain before:bg-no-repeat before:bg-center before:z-[-1]'>
-        {fortune.map((item, idx) => {
-          if (idx === result) {
-            return (
-              <p
-                key={item.id}
-                className='p-4 text-primary text-[1.25rem] bg-white max-sm:text-[1rem] max-md:max-h-[12.5rem] max-sm:max-h-[5rem] max-md:overflow-y-auto scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thin max-w-[45%]'
-              >
-                {item.result}
-              </p>
-            );
-          }
+        {resultData.map((item: Props) => {
+          return (
+            <p
+              key={item.id}
+              className='p-4 text-primary text-[1.25rem] bg-white max-sm:text-[1rem] max-md:max-h-[12.5rem] max-sm:max-h-[5rem] max-md:overflow-y-auto scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thin max-w-[45%]'
+            >
+              {item.result}
+            </p>
+          );
         })}
       </div>
       <button

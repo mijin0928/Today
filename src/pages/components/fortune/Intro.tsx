@@ -39,8 +39,7 @@ export default function Intro() {
     if (isTouch) {
       timer = setTimeout(() => {
         router.push('/fortune/result');
-        document.body.style.cursor = 'default';
-      }, 5000);
+      }, 3000);
     }
 
     window.addEventListener('mousemove', (e) => {
