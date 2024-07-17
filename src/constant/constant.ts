@@ -93,3 +93,9 @@ export const WEATHER = [
   { id: 961, description: '강한 폭풍' },
   { id: 962, description: '허리케인' },
 ];
+
+export const DIET = [
+  { id: 'breakfast', title: '아침' },
+  { id: 'lunch', title: '점심' },
+  { id: 'dinner', title: '저녁' },
+];

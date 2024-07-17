@@ -19,6 +19,10 @@ module.exports = {
         close: "url('~/public/close.png')",
         paper: "url('~/public/paper.png')",
         reset: "url('~/public/reset.png')",
+        arrow: "url('~/public/arrow.png')",
+        morning: "url('~/public/morning.png')",
+        day: "url('~/public/day.png')",
+        night: "url('~/public/night.png')",
       },
       keyframes: {
         rotate: {
@@ -43,7 +47,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-  ],
+  plugins: [require('tailwind-scrollbar')],
 };
