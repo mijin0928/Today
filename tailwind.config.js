@@ -25,6 +25,8 @@ module.exports = {
         night: "url('~/public/night.png')",
         remove: "url('~/public/remove.png')",
         removeOn: "url('~/public/remove-on.png')",
+        checkbox: "url('~/public/checkbox.png')",
+        checkboxOn: "url('~/public/checkbox-on.png')",
       },
       keyframes: {
         rotate: {
