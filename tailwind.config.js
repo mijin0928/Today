@@ -40,11 +40,21 @@ module.exports = {
           '0%': { transform: 'translateY(-10px)' },
           '100%': { transform: 'translateY(10px)' },
         },
+        up: {
+          '0%': { opacity: 0, transform: 'translateY(10px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        down: {
+          '0%': { opacity: 1, transform: 'translateY(0)' },
+          '100%': { opacity: 0, transform: 'translateY(-10px)' },
+        },
       },
       animation: {
         rotate: 'rotate 5s linear infinite',
         skew: 'skew 1.2s linear infinite alternate',
         shake: 'shake .2s linear infinite alternate',
+        up: 'up .3s linear',
+        down: 'down .3s linear',
       },
     },
   },
