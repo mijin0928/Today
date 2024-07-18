@@ -24,6 +24,7 @@ module.exports = {
         day: "url('~/public/day.png')",
         night: "url('~/public/night.png')",
         remove: "url('~/public/remove.png')",
+        removeOn: "url('~/public/remove-on.png')",
       },
       keyframes: {
         rotate: {
