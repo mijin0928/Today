@@ -3,7 +3,7 @@ import Input from '../input/Input';
 import { Todo } from '@/type/type';
 import ToDoItem from './ToDoItem';
 
-export default function ToDo() {
+export default function ToDoList() {
   const [value, setValue] = useState('');
   const [todo, setTodo] = useState<Todo[]>([]);
   const [hasValue, setHasValue] = useState(false);

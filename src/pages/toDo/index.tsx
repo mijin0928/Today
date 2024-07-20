@@ -1,12 +1,12 @@
 import MainTitle from '../components/mainTitle/MainTitle';
 import Layout from '../components/layout/Layout';
-import Todo from '../components/toDo/ToDo';
+import ToDoList from '../components/toDo/ToDoList';
 
-export default function TodoList() {
+export default function Todo() {
   return (
     <Layout>
       <MainTitle title='할일' />
-      <Todo />
+      <ToDoList />
     </Layout>
   );
 }
