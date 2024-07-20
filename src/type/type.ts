@@ -13,6 +13,12 @@ export interface InputProps {
 }
 export interface Todo {
   id: number;
-  text: string;
-  isChecked: boolean;
+  text?: string;
+  isChecked?: boolean;
+}
+export interface ToDoProps<T> {
+  todo: T;
+  idx?: number;
+  handleDeleteClick?: (id: number) => void;
+  handleCheckChange?: (id: number) => void;
 }

@@ -1,5 +1,14 @@
-export default function Count({ count, todo }) {
+import { useEffect, useState } from 'react';
+import { Todo, ToDoProps } from '@/type/type';
+
+export default function Count({ todo }: ToDoProps<Todo[]>) {
+  const [count, setCount] = useState(0);
   const isVisible = todo.length === 0 ? 'before:hidden after:hidden' : 'before:block after:block';
+
+  useEffect(() => {
+    const unChecked = todo.filter((todo) => !todo.isChecked).length;
+    setCount(unChecked);
+  }, [todo]);
 
   return (
     <p

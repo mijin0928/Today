@@ -1,4 +1,6 @@
-export default function Check({ idx, todo, handleCheckChange }) {
+import { Todo, ToDoProps } from '@/type/type';
+
+export default function Check({ idx = 0, todo, handleCheckChange }: ToDoProps<Todo>) {
   return (
     <>
       <input
@@ -6,7 +8,7 @@ export default function Check({ idx, todo, handleCheckChange }) {
         id={`checkbox${idx + 1}`}
         name={`checkbox${idx + 1}`}
         type='checkbox'
-        onChange={() => handleCheckChange(todo.id)}
+        onChange={() => handleCheckChange && handleCheckChange(todo.id)}
       />
       <label
         className={`ml-20 max-sm:block max-sm:ml-16 max-sm:w-40 ${

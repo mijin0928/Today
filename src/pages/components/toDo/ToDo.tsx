@@ -1,15 +1,12 @@
-import { ChangeEvent, useEffect, useState, useRef } from 'react';
+import { ChangeEvent, useState, useRef } from 'react';
 import Input from '../input/Input';
 import { Todo } from '@/type/type';
-import Delete from './Delete';
-import Count from './Count';
-import Check from './Check';
+import ToDoItem from './ToDoItem';
 
 export default function ToDo() {
   const [value, setValue] = useState('');
   const [todo, setTodo] = useState<Todo[]>([]);
   const [hasValue, setHasValue] = useState(false);
-  const [count, setCount] = useState(0);
   const [id, setId] = useState(0);
   const countRef = useRef(1);
   const todoList = { id: id, text: value, isChecked: false };
@@ -40,11 +37,6 @@ export default function ToDo() {
     setTodo((prevTodo) => prevTodo.map((todo) => (todo.id === id ? { ...todo, isChecked: !todo.isChecked } : todo)));
   };
 
-  useEffect(() => {
-    const unChecked = todo.filter((todo) => !todo.isChecked).length;
-    setCount(unChecked);
-  }, [todo]);
-
   return (
     <>
       <Input
@@ -54,19 +46,7 @@ export default function ToDo() {
         onChange={handleValueChange}
         onKeyDown={handleEnterKeyDown}
       />
-      {hasValue && (
-        <div className='mt-12 m-auto w-[50rem] max-md:w-full'>
-          <Count todo={todo} count={count} />
-          <ul className='mt-8'>
-            {todo.map((todo: Todo, idx) => (
-              <li className={`relative mt-4 first:mt-0 bg-white px-5 py-4 rounded-3xl`} key={todo.id}>
-                <Check todo={todo} idx={idx} handleCheckChange={handleCheckChange} />
-                <Delete todo={todo} handleDeleteClick={handleDeleteClick} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {hasValue && <ToDoItem todo={todo} handleDeleteClick={handleDeleteClick} handleCheckChange={handleCheckChange} />}
     </>
   );
 }
