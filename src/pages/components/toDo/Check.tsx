@@ -11,9 +11,9 @@ export default function Check({ idx = 0, todo, handleCheckChange }: ToDoProps<To
         onChange={() => handleCheckChange && handleCheckChange(todo.id)}
       />
       <label
-        className={`ml-20 max-sm:block max-sm:ml-16 max-sm:w-40 ${
+        className={`block ml-20 max-sm:ml-16 w-[calc(100%_-_130px)] ${
           todo.isChecked ? 'opacity-50' : 'opacity-1'
-        } text-[1.25rem] text-primary cursor-pointer`}
+        } text-[1.25rem] max-sm:text-[1rem] text-primary cursor-pointer`}
         htmlFor={`checkbox${idx + 1}`}
       >
         {todo.text}
