@@ -23,10 +23,11 @@ module.exports = {
         morning: "url('~/public/morning.png')",
         day: "url('~/public/day.png')",
         night: "url('~/public/night.png')",
-        remove: "url('~/public/remove.png')",
-        removeOn: "url('~/public/remove-on.png')",
+        delete: "url('~/public/delete.png')",
+        deleteOn: "url('~/public/delete-on.png')",
         checkbox: "url('~/public/checkbox.png')",
         checkboxOn: "url('~/public/checkbox-on.png')",
+        comma: "url('~/public/comma.png')",
       },
       keyframes: {
         rotate: {
