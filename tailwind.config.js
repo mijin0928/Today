@@ -52,6 +52,10 @@ module.exports = {
           '0%': { opacity: 1, transform: 'translateY(0)' },
           '100%': { opacity: 0, transform: 'translateY(-10px)' },
         },
+        bouncing: {
+          '0%': { transform: 'translateY(-15px)' },
+          '100%': { transform: 'translateY(10px)' },
+        },
       },
       animation: {
         rotate: 'rotate 5s linear infinite',
@@ -59,6 +63,7 @@ module.exports = {
         shake: 'shake .2s linear infinite alternate',
         up: 'up .3s linear',
         down: 'down .3s linear',
+        bouncing: 'bouncing .6s ease-in infinite alternate',
       },
     },
   },

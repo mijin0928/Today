@@ -19,6 +19,7 @@ export interface Todo {
 export interface ToDoProps<T> {
   todo: T;
   idx?: number;
+  hasValue?: boolean;
   handleDeleteClick?: (id: number) => void;
   handleCheckChange?: (id: number) => void;
 }
