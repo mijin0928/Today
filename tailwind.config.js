@@ -23,6 +23,11 @@ module.exports = {
         morning: "url('~/public/morning.png')",
         day: "url('~/public/day.png')",
         night: "url('~/public/night.png')",
+        delete: "url('~/public/delete.png')",
+        deleteOn: "url('~/public/delete-on.png')",
+        checkbox: "url('~/public/checkbox.png')",
+        checkboxOn: "url('~/public/checkbox-on.png')",
+        comma: "url('~/public/comma.png')",
       },
       keyframes: {
         rotate: {
@@ -39,11 +44,26 @@ module.exports = {
           '0%': { transform: 'translateY(-10px)' },
           '100%': { transform: 'translateY(10px)' },
         },
+        up: {
+          '0%': { opacity: 0, transform: 'translateY(10px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        down: {
+          '0%': { opacity: 1, transform: 'translateY(0)' },
+          '100%': { opacity: 0, transform: 'translateY(-10px)' },
+        },
+        bouncing: {
+          '0%': { transform: 'translateY(-15px)' },
+          '100%': { transform: 'translateY(10px)' },
+        },
       },
       animation: {
         rotate: 'rotate 5s linear infinite',
         skew: 'skew 1.2s linear infinite alternate',
         shake: 'shake .2s linear infinite alternate',
+        up: 'up .3s linear',
+        down: 'down .3s linear',
+        bouncing: 'bouncing .6s ease-in infinite alternate',
       },
     },
   },

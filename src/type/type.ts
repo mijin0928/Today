@@ -11,3 +11,8 @@ export interface InputProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent) => void;
 }
+export interface Todo {
+  id: number;
+  text?: string;
+  isChecked?: boolean;
+}
