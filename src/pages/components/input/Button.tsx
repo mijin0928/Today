@@ -8,7 +8,7 @@ export default function Button({ value, onClick }: InputProps) {
 
   return (
     <button
-      className='shrink-0 py-2 px-3 text-[1.18rem] bg-primary text-white'
+      className='shrink-0 py-2 px-3 text-[1.18rem] bg-primary text-white max-sm:text-base'
       type='button'
       onClick={handleEnterClick}
     >
