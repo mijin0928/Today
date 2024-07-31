@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
 import Input from '../input/Input';
-import Tab from './Tab';
+import Category from './Category';
 
 export default function Diet() {
   const [value, setValue] = useState('');
@@ -34,7 +34,7 @@ export default function Diet() {
         onChange={handleValueChange}
         onClick={handleValueClick}
       />
-      {selectedValue && <Tab selectedValue={selectedValue} todo={todo} />}
+      {selectedValue && <Category selectedValue={selectedValue} todo={todo} />}
     </>
   );
 }
