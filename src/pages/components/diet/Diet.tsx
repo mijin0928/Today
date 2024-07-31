@@ -1,10 +1,13 @@
-import { useState, ChangeEvent, MouseEvent } from 'react';
+import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
 import Input from '../input/Input';
 import Tab from './Tab';
 
 export default function Diet() {
   const [value, setValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
+  const [todo, setTodo] = useState([]);
+  const [id, setId] = useState(0);
+  const countRef = useRef(1);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -12,11 +15,14 @@ export default function Diet() {
 
   const handleValueClick = (e: MouseEvent<HTMLUListElement>) => {
     const target = e.target as HTMLElement;
-    const value = target.getAttribute('data-value');
-    if (value === null) return;
+    const selected = target.getAttribute('data-value');
+    if (!selected) return;
+    const todoList = { id: id, text: value, category: selected };
 
-    setSelectedValue(value);
+    setSelectedValue(selected);
+    setId(countRef.current++);
     setValue('');
+    setTodo((prev) => [...prev, todoList]);
   };
 
   return (
@@ -28,7 +34,7 @@ export default function Diet() {
         onChange={handleValueChange}
         onClick={handleValueClick}
       />
-      <Tab selectedValue={selectedValue} />
+      {selectedValue && <Tab selectedValue={selectedValue} todo={todo} />}
     </>
   );
 }
