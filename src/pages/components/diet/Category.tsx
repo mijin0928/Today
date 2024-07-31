@@ -1,18 +1,18 @@
 import { DIET } from '@/constant/constant';
-import TabItem from './TabItem';
+import DietItem from './DietItem';
 
-export default function Tab({ selectedValue, todo }) {
+export default function Category({ selectedValue, todo }) {
   return (
-    <div className='w-[720px] m-auto'>
-      <div className='flex justify-center gap-20'>
+    <div className='w-[45rem] m-auto'>
+      <div className='flex justify-between'>
         {DIET.map((item) => (
           <>
-            <div key={item.id}>
+            <div className='w-1/3' key={item.id}>
               <ul>
                 <li
                   className={`${
                     selectedValue === item.title ? 'bg-white' : 'bg-transparent'
-                  } py-2 px-16 rounded-t-2xl text-primary text-[1.3rem] cursor-pointer`}
+                  } py-2 rounded-t-2xl text-primary text-[1.4rem] text-center cursor-pointer`}
                 >
                   {item.title}
                 </li>
@@ -21,7 +21,7 @@ export default function Tab({ selectedValue, todo }) {
           </>
         ))}
       </div>
-      <TabItem selectedValue={selectedValue} todo={todo} />
+      <DietItem selectedValue={selectedValue} todo={todo} />
     </div>
   );
 }
