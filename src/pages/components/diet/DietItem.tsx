@@ -1,20 +1,28 @@
+import Image from 'next/image';
 import FileInput from './FileInput';
 import KcalInput from './KcalInput';
 
-export default function DietItem({ selectedValue, todo }) {
+export default function DietItem({ selectedValue, todo, hasItem }) {
   return (
-    <div className='p-5 text-primary text-[1.2rem] rounded-b-2xl bg-white'>
-      {todo.map(
-        (item) =>
-          item.category === selectedValue && (
-            <ul key={item.id}>
-              <li className='flex items-center gap-10 mt-10'>
-                <FileInput id={item.id} />
-                <KcalInput text={item.text} />
-              </li>
-            </ul>
+    <div className='p-5 text-primary rounded-b-2xl bg-white'>
+      <ul>
+        {hasItem !== 0 ? (
+          todo.map(
+            (item) =>
+              item.category === selectedValue && (
+                <li className='flex items-center gap-10 mt-10 first:mt-0 text-[1.2rem]' key={item.id}>
+                  <FileInput id={item.id} />
+                  <KcalInput text={item.text} />
+                </li>
+              )
           )
-      )}
+        ) : (
+          <div className='py-10'>
+            <Image className='m-auto' src='/diet.png' width='140' height='140' alt='식단' />
+            <p className='mt-5 text-[1.3rem] text-center'>작성된 식단이 없어요</p>
+          </div>
+        )}
+      </ul>
     </div>
   );
 }

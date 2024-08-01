@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, MouseEvent, useRef } from 'react';
+import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
 import Input from '../input/Input';
 import Category from './Category';
 
@@ -7,6 +7,7 @@ export default function Diet() {
   const [selectedValue, setSelectedValue] = useState('');
   const [todo, setTodo] = useState([]);
   const [id, setId] = useState(0);
+  const [hasItem, setHasItem] = useState(0);
   const countRef = useRef(1);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +30,11 @@ export default function Diet() {
     setSelectedValue(id);
   };
 
+  useEffect(() => {
+    const itemLength = todo.filter((item) => item.category === selectedValue).length;
+    setHasItem(itemLength);
+  }, [todo, selectedValue]);
+
   return (
     <>
       <Input
@@ -39,7 +45,12 @@ export default function Diet() {
         onClick={handleValueClick}
       />
       {selectedValue && (
-        <Category selectedValue={selectedValue} todo={todo} handleCategoryClick={handleCategoryClick} />
+        <Category
+          selectedValue={selectedValue}
+          todo={todo}
+          hasItem={hasItem}
+          handleCategoryClick={handleCategoryClick}
+        />
       )}
     </>
   );
