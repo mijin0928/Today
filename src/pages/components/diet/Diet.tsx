@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
+import { useState, ChangeEvent, MouseEvent, useRef } from 'react';
 import Input from '../input/Input';
 import Category from './Category';
 
@@ -25,6 +25,10 @@ export default function Diet() {
     setTodo((prev) => [...prev, todoList]);
   };
 
+  const handleCategoryClick = (id: string) => {
+    setSelectedValue(id);
+  };
+
   return (
     <>
       <Input
@@ -34,7 +38,9 @@ export default function Diet() {
         onChange={handleValueChange}
         onClick={handleValueClick}
       />
-      {selectedValue && <Category selectedValue={selectedValue} todo={todo} />}
+      {selectedValue && (
+        <Category selectedValue={selectedValue} todo={todo} handleCategoryClick={handleCategoryClick} />
+      )}
     </>
   );
 }
