@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import FileInput from './FileInput';
 import KcalInput from './KcalInput';
+import Rating from './Rating';
 
 export default function DietItem({ selectedValue, todo, hasItem }) {
   return (
@@ -12,7 +13,10 @@ export default function DietItem({ selectedValue, todo, hasItem }) {
               item.category === selectedValue && (
                 <li className='flex items-center gap-10 mt-10 first:mt-0 text-[1.2rem]' key={item.id}>
                   <FileInput id={item.id} />
-                  <KcalInput text={item.text} />
+                  <div>
+                    <KcalInput text={item.text} />
+                    <Rating />
+                  </div>
                 </li>
               )
           )
