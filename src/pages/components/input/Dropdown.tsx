@@ -1,5 +1,5 @@
 import { MouseEvent, useState, useRef, useEffect } from 'react';
-import { DIET } from '@/constant/constant';
+import { CATEGORY } from '@/constant/constant';
 import { InputProps } from '@/type/type';
 
 export default function Dropdown({ selectedValue, onClick }: InputProps) {
@@ -48,7 +48,7 @@ export default function Dropdown({ selectedValue, onClick }: InputProps) {
         {isSelected}
       </button>
       <ul className={`${isToggle} absolute left-0 top-12 border border-white`} onClick={handleValueClick} ref={dietRef}>
-        {DIET.map((diet) => (
+        {CATEGORY.map((diet) => (
           <li
             data-value={diet.title}
             className='py-2 pl-3 pr-10 border-b last:border-b-0 border-white cursor-pointer bg-primary bg-no-repeat bg-[length:25px_25px] bg-[85%] hover:text-primary hover:bg-white'

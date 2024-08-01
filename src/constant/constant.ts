@@ -94,8 +94,8 @@ export const WEATHER = [
   { id: 962, description: '허리케인' },
 ];
 
-export const DIET = [
-  { id: 'breakfast', title: '아침' },
-  { id: 'lunch', title: '점심' },
-  { id: 'dinner', title: '저녁' },
+export const CATEGORY = [
+  { id: '아침', title: '아침' },
+  { id: '점심', title: '점심' },
+  { id: '저녁', title: '저녁' },
 ];
