@@ -12,6 +12,7 @@ export default function ToDoList() {
   const { id, onId } = useId();
   const { handleDeleteClick } = useDelete(todo, setTodo);
   const todoList = { id: id, text: value, isChecked: false };
+  const { handleDeleteClick } = useDelete(id, todo, setTodo);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
