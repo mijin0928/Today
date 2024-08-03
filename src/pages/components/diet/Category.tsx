@@ -1,7 +1,7 @@
 import { CATEGORY } from '@/constant/constant';
 import DietItem from './DietItem';
 
-export default function Category({ selectedValue, todo, hasItem, handleCategoryClick }) {
+export default function Category({ selectedValue, todo, hasItem, handleCategoryClick, handleDeleteClick }) {
   return (
     <div className='w-[45rem] m-auto'>
       <div className='flex justify-between'>
@@ -17,7 +17,7 @@ export default function Category({ selectedValue, todo, hasItem, handleCategoryC
           </ul>
         ))}
       </div>
-      <DietItem selectedValue={selectedValue} todo={todo} hasItem={hasItem} />
+      <DietItem selectedValue={selectedValue} todo={todo} hasItem={hasItem} handleDeleteClick={handleDeleteClick}/>
     </div>
   );
 }

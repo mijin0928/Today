@@ -2,6 +2,7 @@ import { ChangeEvent, useState, useRef } from 'react';
 import Input from '../input/Input';
 import { Todo } from '@/type/type';
 import ToDoItem from './ToDoItem';
+import { useDelete } from '@/pages/hooks/useDelete';
 
 export default function ToDoList() {
   const [value, setValue] = useState('');
@@ -10,6 +11,7 @@ export default function ToDoList() {
   const [id, setId] = useState(0);
   const countRef = useRef(1);
   const todoList = { id: id, text: value, isChecked: false };
+  const { handleDeleteClick } = useDelete(id, todo, setTodo);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -26,11 +28,6 @@ export default function ToDoList() {
     if (e.key === 'Enter') {
       handleAddClick();
     }
-  };
-
-  const handleDeleteClick = (id: number) => {
-    const updateTodo = todo.filter((item) => item.id !== id);
-    setTodo(updateTodo);
   };
 
   const handleCheckChange = (id: number) => {
