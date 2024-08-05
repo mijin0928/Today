@@ -1,16 +1,17 @@
 import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
+import { DietItems } from '@/type/type';
+import { useDelete } from '@/pages/hooks/useDelete';
 import Input from '../input/Input';
 import Category from './Category';
-import { useDelete } from '@/pages/hooks/useDelete';
 
 export default function Diet() {
   const [value, setValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
-  const [todo, setTodo] = useState([]);
+  const [diet, setDiet] = useState<DietItems[]>([]);
   const [id, setId] = useState(0);
   const [hasItem, setHasItem] = useState(0);
   const countRef = useRef(1);
-  const { handleDeleteClick } = useDelete(id, todo, setTodo);
+  const { handleDeleteClick } = useDelete(id, diet, setDiet);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -20,12 +21,12 @@ export default function Diet() {
     const target = e.target as HTMLElement;
     const selected = target.getAttribute('data-value');
     if (!selected) return;
-    const todoList = { id: id, text: value, category: selected };
+    const dietList = { id: id, text: value, category: selected };
 
     setSelectedValue(selected);
     setId(countRef.current++);
     setValue('');
-    setTodo((prev) => [...prev, todoList]);
+    setDiet((prev) => [...prev, dietList]);
   };
 
   const handleCategoryClick = (id: string) => {
@@ -33,9 +34,9 @@ export default function Diet() {
   };
 
   useEffect(() => {
-    const itemLength = todo.filter((item) => item.category === selectedValue).length;
+    const itemLength = diet.filter((item: DietItems) => item.category === selectedValue).length;
     setHasItem(itemLength);
-  }, [todo, selectedValue]);
+  }, [diet, selectedValue]);
 
   return (
     <>
@@ -49,7 +50,7 @@ export default function Diet() {
       {selectedValue && (
         <Category
           selectedValue={selectedValue}
-          todo={todo}
+          diet={diet}
           hasItem={hasItem}
           handleCategoryClick={handleCategoryClick}
           handleDeleteClick={handleDeleteClick}
