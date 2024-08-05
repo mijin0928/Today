@@ -23,3 +23,20 @@ export interface ToDoProps<T> {
   handleDeleteClick?: (id: number) => void;
   handleCheckChange?: (id: number) => void;
 }
+export interface DietItems {
+  id: number;
+  text: string;
+  category: string;
+}
+export interface DietProps {
+  selectedValue: string;
+  diet: DietItems[];
+  hasItem: number;
+  handleCategoryClick?: (id: string) => void;
+  handleDeleteClick: (id: number) => void;
+}
+
+export interface DeleteProps {
+  id: number;
+  handleDeleteClick: (id: number) => void;
+}
