@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { RatingProps } from '@/type/type';
 
-export default function Rating({ rating, review, updateItem, id }) {
+export default function Rating({ id, rating, review, updateItem }: RatingProps) {
   const [hoverRating, setHoverRating] = useState(0);
   const [hoverReview, setHoverReview] = useState('');
   const isSelectedReview = hoverRating < rating ? review : hoverReview;

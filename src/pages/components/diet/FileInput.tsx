@@ -1,7 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { FileInputProps } from '@/type/type';
 
-export default function FileInput({ id, file, updateItem }) {
+export default function FileInput({ id, file, updateItem }: FileInputProps) {
   const [url, setUrl] = useState('');
   const isFileValue = url ? url : '/camera.png';
   const size = url ? '200' : '100';
@@ -14,16 +15,15 @@ export default function FileInput({ id, file, updateItem }) {
 
   useEffect(() => {
     if (!file) return;
-  
+
     const image = URL.createObjectURL(file);
     setUrl(image);
-   
+
     return () => {
       URL.revokeObjectURL(image);
       setUrl('');
     };
-  
-  },[file]);
+  }, [file]);
 
   return (
     <div className='w-[13.5rem]'>

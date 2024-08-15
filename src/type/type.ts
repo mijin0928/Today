@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, MouseEvent, SetStateAction } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
 export interface Item {
   id: string;
   result: string;
@@ -11,8 +11,11 @@ export interface InputProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent) => void;
 }
-export interface Todo {
+
+export interface BaseItem {
   id: number;
+}
+export interface Todo extends BaseItem {
   text?: string;
   isChecked?: boolean;
 }
@@ -23,26 +26,43 @@ export interface ToDoProps<T> {
   handleDeleteClick?: (id: number) => void;
   handleCheckChange?: (id: number) => void;
 }
-export interface DietItems {
-  id: number;
+
+export interface DietItems extends BaseItem {
   text: string;
   category: string;
+  file: File | null;
+  kcal: number;
+  rating: number;
+  review: string;
 }
-export interface DietProps {
+
+export interface UpdateItem {
+  updateItem: (id: number, update: Partial<DietItems>) => void;
+}
+
+export interface DeleteProps extends BaseItem {
+  handleDeleteClick: (id: number) => void;
+}
+export interface CategoryProps {
   selectedValue: string;
-  diet: DietItems[];
-  hasItem: number;
-  handleCategoryClick?: (id: string) => void;
-  handleDeleteClick: (id: number) => void;
+  handleCategoryClick: (id: string) => void;
 }
 
-export interface DeleteProps {
-  id: number;
+export interface DietItemProps extends UpdateItem {
+  itemLength: number;
+  filterItem: DietItems[];
   handleDeleteClick: (id: number) => void;
 }
+export interface FileInputProps extends UpdateItem, BaseItem {
+  file: File | null;
+}
 
-export interface Delete {
-  id: number;
-  todo: string[];
-  setTodo: SetStateAction<string>
+export interface KcalInputProps extends UpdateItem, BaseItem {
+  text: string;
+  kcal: number;
+}
+
+export interface RatingProps extends UpdateItem, BaseItem {
+  rating: number;
+  review: string;
 }

@@ -1,7 +1,7 @@
 import { CATEGORY } from '@/constant/constant';
-import { DietProps } from '@/type/type';
+import { CategoryProps } from '@/type/type';
 
-export default function Category({ selectedValue, handleCategoryClick }: DietProps) {
+export default function Category({ selectedValue, handleCategoryClick }: CategoryProps) {
   return (
     <div className='flex justify-between'>
       {CATEGORY.map((item) => (
