@@ -1,8 +1,10 @@
-export function useDelete(id, todo, setTodo) {
+import { DietItems, Todo } from '@/type/type';
+import { SetStateAction, Dispatch } from 'react';
+
+export function useDelete(item, setItem) {
   const handleDeleteClick = (id: number) => {
-    const updateTodo = todo.filter((item) => item.id !== id);
-    setTodo(updateTodo);
-    console.log(todo)
+    const updateTodo = item.filter((item) => item.id !== id);
+    setItem(updateTodo);
   };
 
   return { handleDeleteClick };

@@ -1,12 +1,10 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function Rating() {
+export default function Rating({ rating, review, updateItem, id }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [hoverReview, setHoverReview] = useState('');
-  const [selectedRating, setSelectedRating] = useState(0);
-  const [selectedReview, setSelectedReview] = useState('');
-  const isSelectedReview = hoverRating < selectedRating ? selectedReview : hoverReview;
+  const isSelectedReview = hoverRating < rating ? review : hoverReview;
 
   const handleRatingLeave = () => {
     setHoverRating(0);
@@ -35,9 +33,8 @@ export default function Rating() {
     }
   };
 
-  const handleRatingClick = (idx: number) => {
-    setSelectedRating(idx + 1);
-    setSelectedReview(hoverReview);
+  const handleRatingClick = (id: number, idx: number) => {
+    updateItem(id, { rating: idx + 1, review: hoverReview });
   };
 
   return (
@@ -48,12 +45,12 @@ export default function Rating() {
           <Image
             className='cursor-pointer'
             key={idx}
-            src={idx < hoverRating || idx < selectedRating ? '/star-on.png' : '/star.png'}
+            src={idx < hoverRating || idx < rating ? '/star-on.png' : '/star.png'}
             width={35}
             height={35}
             alt='별점'
             onMouseEnter={() => handleRatingEnter(idx)}
-            onClick={() => handleRatingClick(idx)}
+            onClick={() => handleRatingClick(id, idx)}
           />
         ))}
       <p className='ml-1'>{isSelectedReview}</p>

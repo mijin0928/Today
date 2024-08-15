@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEvent, SetStateAction } from 'react';
 export interface Item {
   id: string;
   result: string;
@@ -39,4 +39,10 @@ export interface DietProps {
 export interface DeleteProps {
   id: number;
   handleDeleteClick: (id: number) => void;
+}
+
+export interface Delete {
+  id: number;
+  todo: string[];
+  setTodo: SetStateAction<string>
 }
