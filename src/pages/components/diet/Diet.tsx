@@ -19,7 +19,7 @@ export default function Diet() {
     setValue(e.target.value);
   };
 
-  const updateItem = (id: number, update) => {
+  const updateItem = (id: number, update: Partial<DietItems>) => {
     setDiet((prev) => prev.map((item) => (item.id === id ? { ...item, ...update } : item)));
   };
 
@@ -27,13 +27,14 @@ export default function Diet() {
     const target = e.target as HTMLElement;
     const selected = target.getAttribute('data-value');
     if (!selected) return;
-    const dietList = {
+    const dietList: DietItems = {
       id: id,
       text: value,
       category: selectedValue,
-      file: '',
+      file: null,
+      kcal: 0,
       rating: 0,
-      review: ''
+      review: '',
     };
 
     setSelectedValue(selected);
