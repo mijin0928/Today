@@ -5,7 +5,7 @@ import Input from '../input/Input';
 import Category from './Category';
 import DietItem from './DietItem';
 
-export default function Diet() {
+export default function DietList() {
   const [value, setValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [diet, setDiet] = useState<DietItems[]>([]);
@@ -30,7 +30,7 @@ export default function Diet() {
     const dietList: DietItems = {
       id: id,
       text: value,
-      category: selectedValue,
+      category: selected,
       file: null,
       kcal: 0,
       rating: 0,
@@ -63,7 +63,7 @@ export default function Diet() {
         onClick={handleAddClick}
       />
       {selectedValue && (
-        <div className='w-[45rem] m-auto'>
+        <div className='xl:w-[60rem] w-full m-auto'>
           <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
           <DietItem
             itemLength={itemLength}
