@@ -1,6 +1,7 @@
-import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
+import { useState, ChangeEvent, MouseEvent, useEffect } from 'react';
 import { DietItems } from '@/type/type';
 import { useDelete } from '@/pages/hooks/useDelete';
+import { useId } from '@/pages/hooks/useId';
 import Input from '../input/Input';
 import Category from './Category';
 import DietItem from './DietItem';
@@ -10,10 +11,8 @@ export default function DietList() {
   const [selectedValue, setSelectedValue] = useState('');
   const [diet, setDiet] = useState<DietItems[]>([]);
   const [filterItem, setFilterItem] = useState<DietItems[]>([]);
-  const [id, setId] = useState(0);
   const [itemLength, setItemLength] = useState(0);
-
-  const countRef = useRef(1);
+  const { id, onId } = useId();
   const { handleDeleteClick } = useDelete(diet, setDiet);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
