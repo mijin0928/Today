@@ -7,13 +7,13 @@ import Delete from './Delete';
 
 export default function DietItem({ itemLength, filterItem, handleDeleteClick, updateItem }: DietItemProps) {
   return (
-    <div className='p-5 text-primary rounded-b-2xl bg-white'>
+    <div className='sm:overflow-y-auto py-12 px-5 sm:h-[20rem] 2xl:px-10 text-primary rounded-b-2xl bg-white scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thin'>
       <ul>
         {itemLength !== 0 ? (
           filterItem.map((item: DietItems) => (
-            <li className='flex items-center justify-between mt-10 first:mt-0 text-[1.2rem]' key={item.id}>
+            <li className='relative block sm:flex sm:items-center sm:justify-between mt-10 first:mt-0 text-[1.2rem]' key={item.id}>
               <FileInput id={item.id} file={item.file} updateItem={updateItem} />
-              <div className='w-[21.8rem] shrink-0'>
+              <div className='sm:w-[50%]'>
                 <KcalInput id={item.id} text={item.text} kcal={item.kcal} updateItem={updateItem} />
                 <Rating id={item.id} rating={item.rating} review={item.review} updateItem={updateItem} />
               </div>

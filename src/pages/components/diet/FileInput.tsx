@@ -3,9 +3,8 @@ import Image from 'next/image';
 import { FileInputProps } from '@/type/type';
 
 export default function FileInput({ id, file, updateItem }: FileInputProps) {
-  const [url, setUrl] = useState('');
-  const isFileValue = url ? url : '/camera.png';
-  const size = url ? '200' : '100';
+  const [url, setUrl] = useState('/camera.png');
+  const [size, setSize] = useState(130);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>, id: number) => {
     if (e.target.files) {
@@ -14,21 +13,21 @@ export default function FileInput({ id, file, updateItem }: FileInputProps) {
   };
 
   useEffect(() => {
-    if (!file) return;
+    if (file) {
+      const image = URL.createObjectURL(file);
+      setUrl(image);
+      setSize(250);
 
-    const image = URL.createObjectURL(file);
-    setUrl(image);
-
-    return () => {
-      URL.revokeObjectURL(image);
-      setUrl('');
-    };
+      return () => {
+        URL.revokeObjectURL(image);
+      };
+    }
   }, [file]);
 
   return (
-    <div className='w-[13.5rem]'>
+    <div className='sm:w-[40%] sm:shrink-0'>
       <label className='cursor-pointer' htmlFor={`file${id}`}>
-        <Image className='m-auto cursor-pointer' src={isFileValue} width={size} height={size} alt='이미지' />
+        <Image className={`m-auto cursor-pointer`} src={url} width={size} height={size} alt='이미지' />
       </label>
       <input className='hidden' id={`file${id}`} type='file' onChange={(e) => handleFileChange(e, id)} />
     </div>

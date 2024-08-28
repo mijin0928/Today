@@ -12,6 +12,7 @@ export default function DietList() {
   const [filterItem, setFilterItem] = useState<DietItems[]>([]);
   const [id, setId] = useState(0);
   const [itemLength, setItemLength] = useState(0);
+
   const countRef = useRef(1);
   const { handleDeleteClick } = useDelete(diet, setDiet);
 
