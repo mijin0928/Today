@@ -19,6 +19,7 @@ export interface Todo extends BaseItem {
   text?: string;
   isChecked?: boolean;
 }
+
 export interface ToDoProps<T> {
   todo: T;
   idx?: number;

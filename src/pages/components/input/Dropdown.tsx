@@ -39,7 +39,7 @@ export default function Dropdown({ selectedValue, onClick }: InputProps) {
   }, [selectedValue]);
 
   return (
-    <div className='relative shrink-0 text-[1.18rem] text-white'>
+    <div className='relative shrink-0 text-[1.18rem] max-sm:text-base text-white'>
       <button
         className={`${image} py-2 pl-3 pr-10 border border-white bg-primary bg-no-repeat bg-[length:25px_25px] bg-[85%]`}
         onClick={handleDropdownClick}
