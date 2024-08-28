@@ -2,18 +2,19 @@ import { MouseEvent, useState, useRef, useEffect } from 'react';
 import { CATEGORY } from '@/constant/constant';
 import { InputProps } from '@/type/type';
 
-export default function Dropdown({ selectedValue, onClick }: InputProps) {
+export default function Dropdown({ value, selectedValue, onClick }: InputProps) {
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState('bg-arrow');
   const isToggle = toggle ? 'block' : 'hidden';
   const dietRef = useRef<HTMLUListElement | null>(null);
-  const isSelected = selectedValue ? selectedValue : '선택';
+  const isSelected = selectedValue || '선택';
 
   const handleDropdownClick = () => {
     setToggle(!toggle);
   };
 
   const handleValueClick = (e: MouseEvent<HTMLUListElement>) => {
+    if(value === '') return;
     onClick(e);
     setToggle(false);
   };
