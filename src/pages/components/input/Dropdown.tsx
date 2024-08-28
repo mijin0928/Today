@@ -7,7 +7,7 @@ export default function Dropdown({ selectedValue, onClick }: InputProps) {
   const [image, setImage] = useState('bg-arrow');
   const isToggle = toggle ? 'block' : 'hidden';
   const dietRef = useRef<HTMLUListElement | null>(null);
-  const isSelected = selectedValue ? selectedValue : '선택';
+  const isSelected = selectedValue || '선택';
 
   const handleDropdownClick = () => {
     setToggle(!toggle);
