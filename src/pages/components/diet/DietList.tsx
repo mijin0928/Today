@@ -24,24 +24,26 @@ export default function DietList() {
     setDiet((prev) => prev.map((item) => (item.id === id ? { ...item, ...update } : item)));
   };
 
-  const handleAddClick = (e: MouseEvent<HTMLUListElement>) => {
-    const target = e.target as HTMLElement;
-    const selected = target.getAttribute('data-value');
-    if (!selected) return;
-    const dietList: DietItems = {
-      id: id,
-      text: value,
-      category: selected,
-      file: null,
-      kcal: 0,
-      rating: 0,
-      review: '',
-    };
+  const handleAddClick = (e?: MouseEvent<HTMLUListElement>) => {
+    if (e) {
+      const target = e.target as HTMLElement;
+      const selected = target.getAttribute('data-value');
+      if (!selected) return;
+      const dietList: DietItems = {
+        id: id,
+        text: value,
+        category: selected,
+        file: null,
+        kcal: 0,
+        rating: 0,
+        review: '',
+      };
 
-    setSelectedValue(selected);
-    setId(countRef.current++);
-    setValue('');
-    setDiet((prev) => [...prev, dietList]);
+      setSelectedValue(selected);
+      setId(countRef.current++);
+      setValue('');
+      setDiet((prev) => [...prev, dietList]);
+    }
   };
 
   const handleCategoryClick = (id: string) => {

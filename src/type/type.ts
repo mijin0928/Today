@@ -7,7 +7,7 @@ export interface InputProps {
   type?: 'button' | 'dropdown';
   value?: string;
   selectedValue?: string;
-  onClick: (() => void) | ((e: MouseEvent<HTMLUListElement>) => void);
+  onClick: (e?: MouseEvent<HTMLUListElement>) => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent) => void;
 }

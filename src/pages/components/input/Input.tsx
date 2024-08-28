@@ -15,7 +15,7 @@ export default function Input({ type, value, selectedValue, onClick, onChange, o
       {type === 'button' ? (
         <Button value={value} onClick={onClick} />
       ) : (
-        <Dropdown value={value} selectedValue={selectedValue} onClick={onClick} />
+        <Dropdown value={value}selectedValue={selectedValue} onClick={onClick} />
       )}
     </div>
   );
