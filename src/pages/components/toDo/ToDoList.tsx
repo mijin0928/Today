@@ -1,14 +1,16 @@
-import { ChangeEvent, useState, useRef } from 'react';
-import Input from '../input/Input';
+import { ChangeEvent, useState } from 'react';
 import { Todo } from '@/type/type';
+import { useDelete } from '@/pages/hooks/useDelete';
+import Input from '../input/Input';
 import ToDoItem from './ToDoItem';
+import { useId } from '@/pages/hooks/useId';
 
 export default function ToDoList() {
   const [value, setValue] = useState('');
   const [todo, setTodo] = useState<Todo[]>([]);
   const [hasValue, setHasValue] = useState(false);
-  const [id, setId] = useState(0);
-  const countRef = useRef(1);
+  const { id, onId } = useId();
+  const { handleDeleteClick } = useDelete(todo, setTodo);
   const todoList = { id: id, text: value, isChecked: false };
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,21 +18,16 @@ export default function ToDoList() {
   };
 
   const handleAddClick = () => {
-    setId(countRef.current++);
     setTodo([...todo, todoList]);
     setValue('');
     setHasValue(true);
+    onId();
   };
 
   const handleEnterKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleAddClick();
     }
-  };
-
-  const handleDeleteClick = (id: number) => {
-    const updateTodo = todo.filter((item) => item.id !== id);
-    setTodo(updateTodo);
   };
 
   const handleCheckChange = (id: number) => {

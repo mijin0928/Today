@@ -2,7 +2,7 @@ import { InputProps } from '@/type/type';
 import Dropdown from './Dropdown';
 import Button from './Button';
 
-export default function Input({ type, value, onClick, onChange, onKeyDown }: InputProps) {
+export default function Input({ type, value, selectedValue, onClick, onChange, onKeyDown }: InputProps) {
   return (
     <div className='flex justify-center items-center 2xl:justify-start'>
       <input
@@ -12,7 +12,11 @@ export default function Input({ type, value, onClick, onChange, onKeyDown }: Inp
         value={value}
         type='text'
       />
-      {type === 'button' ? <Button value={value} onClick={onClick} /> : <Dropdown value={value} onClick={onClick} />}
+      {type === 'button' ? (
+        <Button value={value} onClick={onClick} />
+      ) : (
+        <Dropdown selectedValue={selectedValue} onClick={onClick} />
+      )}
     </div>
   );
 }

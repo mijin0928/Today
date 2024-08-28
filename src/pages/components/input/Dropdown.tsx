@@ -1,13 +1,13 @@
 import { MouseEvent, useState, useRef, useEffect } from 'react';
-import { DIET } from '@/constant/constant';
+import { CATEGORY } from '@/constant/constant';
 import { InputProps } from '@/type/type';
 
-export default function Dropdown({ value, onClick }: InputProps) {
+export default function Dropdown({ selectedValue, onClick }: InputProps) {
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState('bg-arrow');
   const isToggle = toggle ? 'block' : 'hidden';
   const dietRef = useRef<HTMLUListElement | null>(null);
-  const isSelected = value ? value : '선택';
+  const isSelected = selectedValue ? selectedValue : '선택';
 
   const handleDropdownClick = () => {
     setToggle(!toggle);
@@ -25,7 +25,7 @@ export default function Dropdown({ value, onClick }: InputProps) {
       dietRef.current.children[2].classList.add('bg-night');
     }
 
-    switch (value) {
+    switch (selectedValue) {
       case '아침':
         setImage('bg-morning');
         break;
@@ -36,7 +36,7 @@ export default function Dropdown({ value, onClick }: InputProps) {
         setImage('bg-night');
         break;
     }
-  }, [value]);
+  }, [selectedValue]);
 
   return (
     <div className='relative shrink-0 text-[1.18rem] max-sm:text-base text-white'>
@@ -48,7 +48,7 @@ export default function Dropdown({ value, onClick }: InputProps) {
         {isSelected}
       </button>
       <ul className={`${isToggle} absolute left-0 top-12 border border-white`} onClick={handleValueClick} ref={dietRef}>
-        {DIET.map((diet) => (
+        {CATEGORY.map((diet) => (
           <li
             data-value={diet.title}
             className='py-2 pl-3 pr-10 border-b last:border-b-0 border-white cursor-pointer bg-primary bg-no-repeat bg-[length:25px_25px] bg-[85%] hover:text-primary hover:bg-white'
