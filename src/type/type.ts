@@ -1,4 +1,18 @@
 import { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
+
+export interface PositionError {
+  readonly code: number;
+  readonly message: string;
+}
+
+export interface WeatherItem {
+  id: string;
+  src: string;
+  data: string;
+  alt: string;
+  text: string;
+}
+
 export interface Item {
   id: string;
   result: string;
