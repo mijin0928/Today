@@ -3,7 +3,6 @@ export const GNB = [
   { id: 'fortune', item: '운세' },
   { id: 'toDo', item: '할일' },
   { id: 'diet', item: '식단' },
-  { id: 'question', item: '질문' },
 ];
 
 export const animation = [
