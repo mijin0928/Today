@@ -1,4 +1,5 @@
 export const GNB = [
+  { id: 'main', item: '홈' },
   { id: 'weather', item: '날씨' },
   { id: 'fortune', item: '운세' },
   { id: 'toDo', item: '할일' },

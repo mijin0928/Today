@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { GNB, ANIMATION } from '@/constant/constant';
 
 export default function Gnb() {
@@ -12,7 +13,8 @@ export default function Gnb() {
   const isOpenMenu = isOpen ? 'bg-close' : 'bg-open';
 
   const handleGnbClick = (id: string) => {
-    router.push(id);
+    const isMain = id === 'main' ? '/' : id;
+    router.push(isMain);
   };
 
   const handleOpenClick = () => {
@@ -54,7 +56,11 @@ export default function Gnb() {
             }`}
             onClick={() => handleGnbClick(gnb.id)}
           >
-            {gnb.item}
+            {gnb.item === '홈' ? (
+              <Image src='/home.png' width={40} height={40} alt='홈' className='m-auto' />
+            ) : (
+              gnb.item
+            )}
           </li>
         ))}
       </ul>
