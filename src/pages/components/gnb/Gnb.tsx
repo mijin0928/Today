@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { GNB, animation } from '@/constant/constant';
+import Image from 'next/image';
+import { GNB, ANIMATION } from '@/constant/constant';
 
 export default function Gnb() {
   const router = useRouter();
@@ -12,7 +13,8 @@ export default function Gnb() {
   const isOpenMenu = isOpen ? 'bg-close' : 'bg-open';
 
   const handleGnbClick = (id: string) => {
-    router.push(id);
+    const isMain = id === 'main' ? '/' : id;
+    router.push(isMain);
   };
 
   const handleOpenClick = () => {
@@ -49,10 +51,16 @@ export default function Gnb() {
         {GNB.map((gnb, i) => (
           <li
             key={i}
-            className={`mt-12 lg:mt-8 first:mt-24 lg:first:mt-0 pl-10 pb-2 lg:pt-4 lg:pr-4 lg:pb-4 lg:pl-28 text-2xl lg:text-[2rem] md:text-[1.8rem] font-poor_Story border-b lg:border-0 border-inherit text-primary cursor-pointer hover:pl-16 lg:hover:translate-x-5 lg:hover:pl-5 duration-300 lg:bg-white ${animation[i]}`}
+            className={`mt-12 lg:mt-8 first:mt-24 lg:first:mt-0 pl-10 pb-2 lg:pt-4 lg:pr-4 lg:pb-4 lg:pl-28 text-2xl lg:text-[2rem] md:text-[1.8rem] font-poor_Story border-b lg:border-0 border-inherit text-primary cursor-pointer hover:pl-16 lg:hover:translate-x-5 lg:hover:pl-5 duration-300 lg:bg-white ${
+              router.pathname === '/' && ANIMATION[i]
+            }`}
             onClick={() => handleGnbClick(gnb.id)}
           >
-            {gnb.item}
+            {gnb.item === '홈' ? (
+              <Image src='/home.png' width={40} height={40} alt='홈' className='m-auto' />
+            ) : (
+              gnb.item
+            )}
           </li>
         ))}
       </ul>

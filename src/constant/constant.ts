@@ -1,12 +1,12 @@
 export const GNB = [
+  { id: 'main', item: '홈' },
   { id: 'weather', item: '날씨' },
   { id: 'fortune', item: '운세' },
   { id: 'toDo', item: '할일' },
   { id: 'diet', item: '식단' },
-  { id: 'question', item: '질문' },
 ];
 
-export const animation = [
+export const ANIMATION = [
   'animate-[translate_0.5s_ease_alternate]',
   'animate-[translate_0.5s_ease_alternate_0.5s]',
   'animate-[translate_0.5s_ease_alternate_0.8s]',
