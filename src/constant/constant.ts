@@ -5,7 +5,7 @@ export const GNB = [
   { id: 'diet', item: '식단' },
 ];
 
-export const animation = [
+export const ANIMATION = [
   'animate-[translate_0.5s_ease_alternate]',
   'animate-[translate_0.5s_ease_alternate_0.5s]',
   'animate-[translate_0.5s_ease_alternate_0.8s]',
