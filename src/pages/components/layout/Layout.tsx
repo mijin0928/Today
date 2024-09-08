@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Gnb />
-      <main className='p-[0_2rem_0_2rem] lg:p-0 lg:max-w-[78%] lg:m-[0_2rem_0_auto]'>{children}</main>
+      <main className='px-8 pt-2 pb-8 lg:w-[85%] lg:absolute lg:right-0'>{children}</main>
     </>
   );
 }
