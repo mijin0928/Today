@@ -120,6 +120,9 @@ export default function WeatherInfo() {
             key={i}
           >
             <Image className='m-[auto]' src={weather.src} width={100} height={100} alt={weather.alt} />
+            <p className='mt-5 text-[2rem] md:text-[2.8rem] text-center text-primary break-all leading-none'>
+              {weather.data}
+              <span className='inline-block text-[1.5rem] md:text-[2rem] break-all'>{weather.text}</span>
             </p>
           </li>
         ))}
