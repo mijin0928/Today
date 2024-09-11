@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export default function Intro() {
+export default function Hand() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const handRef = useRef<HTMLImageElement | null>(null);
@@ -12,7 +12,7 @@ export default function Intro() {
 
   const handleHandClick = () => {
     setIsVisible(true);
-    document.body.style.cursor = 'none';
+    // document.body.style.cursor = 'none';
   };
 
   const handleHandOver = () => {
@@ -81,29 +81,11 @@ export default function Intro() {
               width={100}
               height={100}
               src='/hand.png'
-              alt='손'
+              alt='움직이는 손'
               ref={handRef}
             />
           )}
         </div>
-      </div>
-      <div className='relative'>
-        <Image
-          className='m-auto md:m-0 md:absolute md:left-1/2 md:top-0 md:translate-x-[-70%] w-full max-w-[28rem] h-[auto] md:w-[28rem]'
-          src='/crystal-ball.gif'
-          width={450}
-          height={450}
-          alt='마법구슬'
-          priority
-          onMouseOver={handleHandOver}
-        />
-        <Image
-          className='hidden md:block absolute md:top-[5rem] md:right-[calc(50%_-_15rem)]'
-          src='/wizard.png'
-          width={300}
-          height={300}
-          alt='마법사'
-        />
       </div>
     </div>
   );
