@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function data(req: NextApiRequest, res: NextApiResponse) {
   const client = await MongoClient.connect(
-    `mongodb+srv://mijin:${process.env.REACT_APP_MONGODB_PW}@cluster0.tdkhkxz.mongodb.net/`
+    `mongodb+srv://mijin:${process.env.NEXT_PUBLIC_MONGODB_PW}@cluster0.tdkhkxz.mongodb.net/`
   );
   const db = client.db('today');
 
