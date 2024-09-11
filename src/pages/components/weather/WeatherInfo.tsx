@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { BASE_URL, KEY, WEATHER } from '@/constant/constant';
+import { BASE_URL, WEATHER } from '@/constant/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getWeather } from '@/pages/api/api';
 import { PositionError, WeatherItem } from '@/type/type';
+import WeatherDetail from './WeatherDetail';
 
 export default function WeatherInfo() {
   const [description, setDescription] = useState('');
@@ -15,7 +16,9 @@ export default function WeatherInfo() {
     const latitude = pos.coords.latitude;
     const longitude = pos.coords.longitude;
 
-    setWeather(`${BASE_URL}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`);
+    setWeather(
+      `${BASE_URL}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_API_KEY}&units=metric`
+    );
   };
 
   const error = (err: PositionError) => {
@@ -82,7 +85,7 @@ export default function WeatherInfo() {
   if (weatherDataLoading) return <div>로딩중</div>;
 
   return (
-    <div>
+    <>
       <div className='relative sm:flex sm:items-center sm:justify-center md:justify-start gap-10 md:gap-20'>
         <Image
           className='w-[15rem] h-[15rem] sm:w-[20rem] sm:h-[20rem] m-auto sm:m-0 rounded-full'
@@ -90,6 +93,7 @@ export default function WeatherInfo() {
           width={0}
           height={0}
           alt='오늘의 날씨'
+          priority
         />
         <div className='text-primary text-center md:text-left'>
           <div className='relative inline-block'>
@@ -113,20 +117,7 @@ export default function WeatherInfo() {
           <p className='mt-3 md:mt-4 text-[2rem] md:text-[2.8rem] break-all'>{description}</p>
         </div>
       </div>
-      <ul className='flex flex-wrap mt-16 gap-5'>
-        {weatherDetail.map((weather, i) => (
-          <li
-            className='px-5 py-5 rounded-3xl h-auto w-[calc(50%_-_0.63rem)] md:w-[calc(33.3%_-_0.82rem)] 2xl:w-[calc(25%_-_5rem)] shadow-[3px_3px_3px_rgba(0,0,0,0.163)] bg-white'
-            key={i}
-          >
-            <Image className='m-[auto]' src={weather.src} width={100} height={100} alt={weather.alt} />
-            <p className='mt-5 text-[2rem] md:text-[2.8rem] text-center text-primary break-all leading-none'>
-              {weather.data}
-              <span className='inline-block text-[1.5rem] md:text-[2rem] break-all'>{weather.text}</span>
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <WeatherDetail weatherDetail={weatherDetail} />
+    </>
   );
 }
