@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Ball from './Ball';
 
 export default function Hand() {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,7 +13,7 @@ export default function Hand() {
 
   const handleHandClick = () => {
     setIsVisible(true);
-    // document.body.style.cursor = 'none';
+    document.body.style.cursor = 'none';
   };
 
   const handleHandOver = () => {
@@ -22,8 +23,11 @@ export default function Hand() {
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
       if (handRef.current) {
-        handRef.current.style.left = `${e.pageX}px`;
-        handRef.current.style.top = `${e.pageY}px`;
+        const halfWidth = handRef.current.offsetWidth / 2;
+        const halfHeight = handRef.current.offsetHeight / 2;
+
+        handRef.current.style.left = `${e.pageX - halfWidth}px`;
+        handRef.current.style.top = `${e.pageY - halfHeight}px`;
       }
     };
 
@@ -68,7 +72,7 @@ export default function Hand() {
           {!isVisible ? (
             <Image
               className='
-              } w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] m-[1rem_auto_0] md:m-0 cursor-pointer'
+              } w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] cursor-pointer'
               width={100}
               height={100}
               src='/hand.png'
@@ -77,7 +81,7 @@ export default function Hand() {
             />
           ) : (
             <Image
-              className={`absolute z-[1] w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] m-[1rem_auto_0] md:m-0 ${isTouchBall}`}
+              className={`fixed z-[1] w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] ${isTouchBall}`}
               width={100}
               height={100}
               src='/hand.png'
@@ -87,6 +91,7 @@ export default function Hand() {
           )}
         </div>
       </div>
+      <Ball handleHandOver={handleHandOver} />
     </div>
   );
 }
