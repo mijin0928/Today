@@ -39,9 +39,9 @@ export default function Rating({ id, rating, review, updateItem }: RatingProps) 
   };
 
   return (
-    <div className='md:flex md:items-center md:mt-5'>
+    <>
       <div
-        className='flex items-center justify-center gap-2 mt-5 mb-3 md:mb-0 md:mt-0'
+        className='flex items-center justify-center gap-2 mt-5 mb-3'
         onMouseLeave={handleRatingLeave}
       >
         {Array(5)
@@ -59,7 +59,7 @@ export default function Rating({ id, rating, review, updateItem }: RatingProps) 
             />
           ))}
       </div>
-      <p className='text-center ml-3'>{isSelectedReview}</p>
-    </div>
+      <p className='text-center h-[1.8rem]'>{isSelectedReview}</p>
+    </>
   );
 }

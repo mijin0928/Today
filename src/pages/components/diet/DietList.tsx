@@ -39,7 +39,7 @@ export default function DietList() {
       };
 
       setSelectedValue(selected);
-      setId(countRef.current++);
+      onId();
       setValue('');
       setDiet((prev) => [...prev, dietList]);
     }
@@ -65,14 +65,16 @@ export default function DietList() {
         onClick={handleAddClick}
       />
       {selectedValue && (
-        <div className='xl:w-[60rem] w-full m-auto'>
-          <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
-          <DietItem
-            itemLength={itemLength}
-            filterItem={filterItem}
-            handleDeleteClick={handleDeleteClick}
-            updateItem={updateItem}
-          />
+        <div className='flex'>
+          <div className='xl:w-[45rem] w-full'>
+            <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
+            <DietItem
+              itemLength={itemLength}
+              filterItem={filterItem}
+              handleDeleteClick={handleDeleteClick}
+              updateItem={updateItem}
+            />
+          </div>
         </div>
       )}
     </>
