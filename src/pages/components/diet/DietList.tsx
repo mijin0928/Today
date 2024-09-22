@@ -5,6 +5,7 @@ import { useId } from '@/pages/hooks/useId';
 import Input from '../input/Input';
 import Category from './Category';
 import DietItem from './DietItem';
+import Count from '../toDo/Count';
 
 export default function DietList() {
   const [value, setValue] = useState('');
@@ -75,6 +76,7 @@ export default function DietList() {
               updateItem={updateItem}
             />
           </div>
+          <Count filterItem={filterItem} />
         </div>
       )}
     </>
