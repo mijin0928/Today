@@ -66,8 +66,9 @@ export default function DietList() {
         onClick={handleAddClick}
       />
       {selectedValue && (
-        <div className='flex'>
-          <div className='xl:w-[45rem] w-full'>
+        <div className='2xl:flex 2xl:flex-row-reverse 2xl:justify-end 2xl:gap-20 text-center'>
+          <Count filterItem={filterItem} />
+          <div className='2xl:w-[45rem] w-full mt-5 2xl:mt-0'>
             <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
             <DietItem
               itemLength={itemLength}
@@ -76,7 +77,6 @@ export default function DietList() {
               updateItem={updateItem}
             />
           </div>
-          <Count filterItem={filterItem} />
         </div>
       )}
     </>
