@@ -77,6 +77,7 @@ export default function DietList() {
               updateItem={updateItem}
             />
           </div>
+          <Count filterItem={filterItem} />
         </div>
       )}
     </>
