@@ -7,7 +7,7 @@ export default function KcalInput({ id, text, kcal, updateItem }: KcalInputProps
   };
 
   return (
-    <div className='mt-10 text-center md:text-left shrink-0'>
+    <div className='mt-10 text-center'>
       <p className='inline-block break-all'>{text}</p>
       <input
         className='w-16 ml-5 mr-2 outline-none border-b-2 border-primary text-center'

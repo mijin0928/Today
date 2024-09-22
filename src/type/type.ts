@@ -42,6 +42,14 @@ export interface ToDoProps<T> {
   handleCheckChange?: (id: number) => void;
 }
 
+export interface CountProps {
+  todo?: {
+    length?: number;
+    isChecked?: boolean;
+  }[];
+  filterItem?: DietItems[];
+}
+
 export interface DietItems extends BaseItem {
   text: string;
   category: string;

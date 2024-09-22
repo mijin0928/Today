@@ -96,4 +96,5 @@ export const CATEGORY = [
   { id: '아침', title: '아침' },
   { id: '점심', title: '점심' },
   { id: '저녁', title: '저녁' },
+  { id: '간식', title: '간식' },
 ];
