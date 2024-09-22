@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Ball from './Ball';
 
-export default function Intro() {
+export default function Hand() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const handRef = useRef<HTMLImageElement | null>(null);
@@ -22,8 +23,11 @@ export default function Intro() {
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
       if (handRef.current) {
-        handRef.current.style.left = `${e.pageX}px`;
-        handRef.current.style.top = `${e.pageY}px`;
+        const halfWidth = handRef.current.offsetWidth / 2;
+        const halfHeight = handRef.current.offsetHeight / 2;
+
+        handRef.current.style.left = `${e.pageX - halfWidth}px`;
+        handRef.current.style.top = `${e.pageY - halfHeight}px`;
       }
     };
 
@@ -68,7 +72,7 @@ export default function Intro() {
           {!isVisible ? (
             <Image
               className='
-              } w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] m-[1rem_auto_0] md:m-0 cursor-pointer'
+              } w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] cursor-pointer'
               width={100}
               height={100}
               src='/hand.png'
@@ -77,34 +81,17 @@ export default function Intro() {
             />
           ) : (
             <Image
-              className={`absolute z-[1] w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] m-[1rem_auto_0] md:m-0 ${isTouchBall}`}
+              className={`fixed z-[1] w-[5rem] h-[5rem] md:w-[6.25rem] md:h-[6.25rem] ${isTouchBall}`}
               width={100}
               height={100}
               src='/hand.png'
-              alt='손'
+              alt='움직이는 손'
               ref={handRef}
             />
           )}
         </div>
       </div>
-      <div className='relative'>
-        <Image
-          className='m-auto md:m-0 md:absolute md:left-1/2 md:top-0 md:translate-x-[-70%] w-full max-w-[28rem] h-[auto] md:w-[28rem]'
-          src='/crystal-ball.gif'
-          width={450}
-          height={450}
-          alt='마법구슬'
-          priority
-          onMouseOver={handleHandOver}
-        />
-        <Image
-          className='hidden md:block absolute md:top-[5rem] md:right-[calc(50%_-_15rem)]'
-          src='/wizard.png'
-          width={300}
-          height={300}
-          alt='마법사'
-        />
-      </div>
+      <Ball handleHandOver={handleHandOver} />
     </div>
   );
 }

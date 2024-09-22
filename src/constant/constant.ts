@@ -16,8 +16,6 @@ export const ANIMATION = [
 
 export const BASE_URL = 'http://api.openweathermap.org';
 
-export const KEY = '323f64ab84d6fe3f4e2cce7ed99120f0';
-
 export const WEATHER = [
   { id: 201, description: '가벼운 비와 천둥구름' },
   { id: 200, description: '비와 천둥구름' },
@@ -98,4 +96,5 @@ export const CATEGORY = [
   { id: '아침', title: '아침' },
   { id: '점심', title: '점심' },
   { id: '저녁', title: '저녁' },
+  { id: '간식', title: '간식' },
 ];

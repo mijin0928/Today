@@ -1,19 +1,19 @@
-import { useState, ChangeEvent, MouseEvent, useRef, useEffect } from 'react';
+import { useState, ChangeEvent, MouseEvent, useEffect } from 'react';
 import { DietItems } from '@/type/type';
 import { useDelete } from '@/pages/hooks/useDelete';
+import { useId } from '@/pages/hooks/useId';
 import Input from '../input/Input';
 import Category from './Category';
 import DietItem from './DietItem';
+import Count from '../toDo/Count';
 
 export default function DietList() {
   const [value, setValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [diet, setDiet] = useState<DietItems[]>([]);
   const [filterItem, setFilterItem] = useState<DietItems[]>([]);
-  const [id, setId] = useState(0);
   const [itemLength, setItemLength] = useState(0);
-
-  const countRef = useRef(1);
+  const { id, onId } = useId();
   const { handleDeleteClick } = useDelete(diet, setDiet);
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +40,7 @@ export default function DietList() {
       };
 
       setSelectedValue(selected);
-      setId(countRef.current++);
+      onId();
       setValue('');
       setDiet((prev) => [...prev, dietList]);
     }
@@ -66,14 +66,17 @@ export default function DietList() {
         onClick={handleAddClick}
       />
       {selectedValue && (
-        <div className='xl:w-[60rem] w-full m-auto'>
-          <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
-          <DietItem
-            itemLength={itemLength}
-            filterItem={filterItem}
-            handleDeleteClick={handleDeleteClick}
-            updateItem={updateItem}
-          />
+        <div className='2xl:flex 2xl:flex-row-reverse 2xl:justify-end 2xl:gap-20 text-center'>
+          <Count filterItem={filterItem} />
+          <div className='2xl:w-[45rem] w-full mt-5 2xl:mt-0'>
+            <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
+            <DietItem
+              itemLength={itemLength}
+              filterItem={filterItem}
+              handleDeleteClick={handleDeleteClick}
+              updateItem={updateItem}
+            />
+          </div>
         </div>
       )}
     </>

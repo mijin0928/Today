@@ -1,17 +1,11 @@
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
 import { getResult } from '@/pages/api/api';
 import { Item } from '@/type/type';
+import Reset from './Reset';
 
 export default function Result() {
-  const router = useRouter();
-
-  const handleResetClick = () => {
-    router.push('/fortune');
-  };
-
   const { data: resultData, isLoading: resultLoading } = useQuery({
     queryKey: ['/api/data'],
     queryFn: () => getResult(),
@@ -46,13 +40,7 @@ export default function Result() {
           );
         })}
       </div>
-      <button
-        className='w-[6.25rem] h-[6.25rem] bg-reset bg-no-repeat bg-center bg-cover absolute bottom-[2rem] right-[3rem] max-sm:w-[3.75rem] max-sm:h-[3.75rem] indent-[100%] overflow-hidden whitespace-nowrap'
-        type='button'
-        onClick={handleResetClick}
-      >
-        처음으로
-      </button>
+      <Reset />
     </>
   );
 }

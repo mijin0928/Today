@@ -25,7 +25,7 @@ export default function FileInput({ id, file, updateItem }: FileInputProps) {
   }, [file]);
 
   return (
-    <div className='sm:w-[40%] sm:shrink-0'>
+    <div>
       <label className='cursor-pointer' htmlFor={`file${id}`}>
         <Image className={`m-auto cursor-pointer`} src={url} width={size} height={size} alt='이미지' />
       </label>
