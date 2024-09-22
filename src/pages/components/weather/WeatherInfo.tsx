@@ -4,6 +4,7 @@ import { BASE_URL, KEY, WEATHER } from '@/constant/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getWeather } from '@/pages/api/api';
 import { PositionError, WeatherItem } from '@/type/type';
+import Loading from '../loading/loading';
 
 export default function WeatherInfo() {
   const [description, setDescription] = useState('');
@@ -79,7 +80,7 @@ export default function WeatherInfo() {
     }
   }, [id, weatherData]);
 
-  if (weatherDataLoading) return <div>로딩중</div>;
+  if (weatherDataLoading) return <Loading />;
 
   return (
     <div>
