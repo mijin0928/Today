@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSetInterval } from '@/pages/hooks/useSetInterval';
+import { useSetInterval } from '@/hooks/useSetInterval';
 
 export default function MainTitle({ title }: { title: string }) {
   const [dot, setDot] = useState('');

@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, MouseEvent, useEffect } from 'react';
 import { DietItems } from '@/type/type';
-import { useDelete } from '@/pages/hooks/useDelete';
-import { useId } from '@/pages/hooks/useId';
+import { useDelete } from '@/hooks/useDelete';
+import { useId } from '@/hooks/useId';
 import Input from '../input/Input';
 import Category from './Category';
 import DietItem from './DietItem';

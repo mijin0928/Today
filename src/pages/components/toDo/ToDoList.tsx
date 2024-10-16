@@ -1,9 +1,9 @@
 import { ChangeEvent, useState } from 'react';
 import { Todo } from '@/type/type';
-import { useDelete } from '@/pages/hooks/useDelete';
+import { useDelete } from '@/hooks/useDelete';
 import Input from '../input/Input';
 import ToDoItem from './ToDoItem';
-import { useId } from '@/pages/hooks/useId';
+import { useId } from '@/hooks/useId';
 
 export default function ToDoList() {
   const [value, setValue] = useState('');
