@@ -50,7 +50,15 @@ export default function ToDo() {
                 className={`relative mt-4 first:mt-0 text-[1.25rem] text-primary bg-white px-5 py-4 rounded-3xl ${isRemove}`}
                 key={todo.id}
               >
-                {todo.text}
+                <input
+                  className='absolute left-8 top-[50%] translate-y-[-50%] appearance-none w-11 h-11 bg-checkbox bg-contain bg-no-repeat cursor-pointer checked:bg-checkboxOn'
+                  id='todoCheck'
+                  name='todoCheck'
+                  type='checkbox'
+                />
+                <label className='ml-20 cursor-pointer' htmlFor='todoCheck'>
+                  {todo.text}
+                </label>
                 <button
                   className='absolute top-[50%] right-[2rem] translate-y-[-50%] overflow-hidden w-[50px] h-[50px] indent-[100%] whitespace-nowrap bg-remove bg-no-repeat bg-contain hover:bg-removeOn'
                   type='button'
