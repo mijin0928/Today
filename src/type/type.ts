@@ -29,11 +29,13 @@ export interface InputProps {
 export interface BaseItem {
   id: number;
 }
-export interface Todo extends BaseItem {
-  text?: string;
-  isChecked?: boolean;
-}
 
+export interface Todo {
+  length?: number;
+  id: number;
+  text: string;
+  isChecked: boolean;
+}
 export interface ToDoProps<T> {
   todo: T;
   idx?: number;
@@ -41,7 +43,6 @@ export interface ToDoProps<T> {
   handleDeleteClick?: (id: number) => void;
   handleCheckChange?: (id: number) => void;
 }
-
 export interface CountProps {
   todo?: {
     length?: number;
