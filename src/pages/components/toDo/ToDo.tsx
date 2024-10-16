@@ -46,7 +46,12 @@ export default function ToDo() {
         onChange={handleValueChange}
         onKeyDown={handleEnterKeyDown}
       />
-      {hasValue && <ToDoItem todo={todo} handleDeleteClick={handleDeleteClick} handleCheckChange={handleCheckChange} />}
+      <ToDoItem
+        todo={todo}
+        handleDeleteClick={handleDeleteClick}
+        handleCheckChange={handleCheckChange}
+        hasValue={hasValue}
+      />
     </>
   );
 }
