@@ -3,9 +3,9 @@ import Gnb from '../gnb/Gnb';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className='flex'>
       <Gnb />
-      <main className='px-8 pt-2 pb-8 lg:w-[85%] lg:absolute lg:right-0'>{children}</main>
-    </>
+      <main className='w-full lg:w-[85%] px-10 lg:ml-[15.6rem] lg:pl-0'>{children}</main>
+    </div>
   );
 }

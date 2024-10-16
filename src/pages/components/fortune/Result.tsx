@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import { getResult } from '@/pages/api/api';
 import { Item } from '@/type/type';
 import Reset from './Reset';
+import Loading from '../loading/loading';
 
 export default function Result() {
   const { data: resultData, isLoading: resultLoading } = useQuery({
@@ -15,16 +15,7 @@ export default function Result() {
     document.body.style.cursor = 'default';
   }, []);
 
-  if (resultLoading)
-    return (
-      <Image
-        src='/loading.gif'
-        className='absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%]'
-        alt='로딩'
-        width={400}
-        height={400}
-      />
-    );
+  if (resultLoading) return <Loading />;
 
   return (
     <>

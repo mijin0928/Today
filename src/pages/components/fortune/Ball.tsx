@@ -2,12 +2,12 @@ import Image from 'next/image';
 
 export default function Ball({ handleHandOver }: { handleHandOver: () => void }) {
   return (
-    <div className='relative'>
+    <div className='relative h-[18.75rem]'>
       <Image
-        className='w-full max-w-[28rem] m-auto md:translate-x-[-6.25rem]'
+        className='md:absolute md:left-1/2 w-full m-auto md:translate-x-[-60%] md:w-[auto]'
         src='/crystal-ball.gif'
-        width={0}
-        height={0}
+        width={350}
+        height={350}
         alt='마법구슬'
         priority
         onMouseOver={handleHandOver}

@@ -15,6 +15,7 @@ export default function DietList() {
   const [itemLength, setItemLength] = useState(0);
   const { id, onId } = useId();
   const { handleDeleteClick } = useDelete(diet, setDiet);
+  const isVisible = !selectedValue && 'invisible';
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -65,20 +66,18 @@ export default function DietList() {
         onChange={handleValueChange}
         onClick={handleAddClick}
       />
-      {selectedValue && (
-        <div className='2xl:flex 2xl:flex-row-reverse 2xl:justify-end 2xl:gap-20 text-center'>
-          <Count filterItem={filterItem} />
-          <div className='2xl:w-[45rem] w-full mt-5 2xl:mt-0'>
-            <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
-            <DietItem
-              itemLength={itemLength}
-              filterItem={filterItem}
-              handleDeleteClick={handleDeleteClick}
-              updateItem={updateItem}
-            />
-          </div>
+      <div className={`2xl:flex 2xl:flex-row-reverse 2xl:justify-end 2xl:gap-20 text-center ${isVisible}`}>
+        <Count filterItem={filterItem} />
+        <div className='2xl:w-[45rem] w-full mt-5 2xl:mt-0'>
+          <Category selectedValue={selectedValue} handleCategoryClick={handleCategoryClick} />
+          <DietItem
+            itemLength={itemLength}
+            filterItem={filterItem}
+            handleDeleteClick={handleDeleteClick}
+            updateItem={updateItem}
+          />
         </div>
-      )}
+      </div>
     </>
   );
 }
