@@ -12,7 +12,7 @@ export default function Check({ idx = 0, todo, handleCheckChange }: ToDoProps<To
       />
       <label
         className={`block ml-20 max-sm:ml-16 w-[calc(100%_-_130px)] ${
-          todo && todo.isChecked     ? 'opacity-50' : 'opacity-1'
+          todo && todo.isChecked ? 'opacity-50' : 'opacity-1'
         } text-[1.25rem] max-sm:text-[1rem] text-primary cursor-pointer`}
         htmlFor={`checkbox${idx + 1}`}
       >
