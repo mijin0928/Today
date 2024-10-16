@@ -46,7 +46,7 @@ export default function Gnb() {
   return (
     <nav>
       <ul
-        className={`${isVisible} lg:visible absolute lg:left-0 lg:top-1/2 right-0 lg:right-auto lg:translate-y-[-50%] lg:w-auto lg:h-auto border-l lg:border-0 bg-white lg:bg-transparent`}
+        className={`${isVisible} lg:visible fixed top-0 right-0 lg:right-auto lg:w-auto lg:h-auto border-l lg:border-0 bg-white lg:bg-transparent z-[99] lg:mt-[6.25rem]`}
       >
         {GNB.map((gnb, i) => (
           <li
@@ -56,17 +56,13 @@ export default function Gnb() {
             }`}
             onClick={() => handleGnbClick(gnb.id)}
           >
-            {gnb.item === '홈' ? (
-              <Image src='/home.png' width={40} height={40} alt='홈' className='m-auto' />
-            ) : (
-              gnb.item
-            )}
+            {gnb.item === '홈' ? <Image src='/home.png' width={40} height={40} alt='홈' /> : gnb.item}
           </li>
         ))}
       </ul>
       <button
         type='button'
-        className={`${isOpenMenu} lg:hidden overflow-hidden absolute right-0 w-12 md:w-16 h-12 md:h-16 indent-[100%] whitespace-nowrap bg-no-repeat bg-cover`}
+        className={`${isOpenMenu} lg:hidden overflow-hidden fixed top-[0.5rem] right-[2.5rem] w-12 md:w-16 h-12 md:h-16 indent-[100%] whitespace-nowrap bg-no-repeat bg-cover z-[9999]`}
         onClick={handleOpenClick}
       >
         모바일 메뉴
