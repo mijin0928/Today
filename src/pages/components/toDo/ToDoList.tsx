@@ -25,7 +25,7 @@ export default function ToDoList() {
   };
 
   const handleEnterKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && value) {
       handleAddClick();
     }
   };
