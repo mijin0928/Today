@@ -14,7 +14,7 @@ export const ANIMATION = [
   'animate-[translate_0.5s_ease_alternate_1.4s]',
 ];
 
-export const BASE_URL = 'http://api.openweathermap.org';
+export const BASE_URL = 'https://api.openweathermap.org';
 
 export const WEATHER = [
   { id: 201, description: '가벼운 비와 천둥구름' },
