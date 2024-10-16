@@ -11,13 +11,14 @@ export default function ToDoList() {
   const [hasValue, setHasValue] = useState(false);
   const { id, onId } = useId();
   const { handleDeleteClick } = useDelete(todo, setTodo);
-  const todoList = { id: id, text: value, isChecked: false };
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
   const handleAddClick = () => {
+    const todoList = { id: id, text: value, isChecked: false };
+    
     setTodo([...todo, todoList]);
     setValue('');
     setHasValue(true);
