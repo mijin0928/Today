@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Gnb from '../gnb/Gnb';
-import { useSetInterval } from '@/pages/hooks/useSetInterval';
+import { useSetInterval } from '@/hooks/useSetInterval';
 
 export default function Title() {
   const [title, setTitle] = useState('');
