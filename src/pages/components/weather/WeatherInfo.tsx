@@ -35,7 +35,7 @@ export default function WeatherInfo() {
     navigator.geolocation.getCurrentPosition(success, error);
 
     if (weatherData) {
-      const weather: WeatherItem[] = [
+      const weatherList: WeatherItem[] = [
         {
           id: 'lowTemp',
           src: '/icons/low-temperature.png',
@@ -73,7 +73,7 @@ export default function WeatherInfo() {
         },
       ];
 
-      setWeatherDetail(weather);
+      setWeatherDetail(weatherList);
       setId(weatherData.weather[0].id);
     }
 
