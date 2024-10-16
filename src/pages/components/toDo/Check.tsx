@@ -16,7 +16,7 @@ export default function Check({ idx = 0, todo, handleCheckChange }: ToDoProps<To
         } text-[1.25rem] max-sm:text-[1rem] text-primary cursor-pointer`}
         htmlFor={`checkbox${idx + 1}`}
       >
-        {todo.text}
+        {todo && todo.text}
       </label>
     </>
   );
