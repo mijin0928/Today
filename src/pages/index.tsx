@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Title from './components/title/Title';
-import ToDo from './components/to-do/ToDo';
+import ToDo from './components/toDo/ToDo';
 export default function Home() {
   return (
     <>
