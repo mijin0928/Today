@@ -11,21 +11,9 @@ export default function Check({ idx = 0, todo, handleCheckChange }: ToDoProps<To
         onChange={() => handleCheckChange && handleCheckChange(todo.id)}
       />
       <label
-<<<<<<< HEAD
-<<<<<<< HEAD
         className={`block ml-20 max-sm:ml-16 w-[calc(100%_-_130px)] ${
           todo && todo.isChecked ? 'opacity-50' : 'opacity-1'
         } text-[1.25rem] max-sm:text-[1rem] text-primary cursor-pointer`}
-=======
-        className={`ml-20 max-sm:block max-sm:ml-16 max-sm:w-40 ${
-          todo.isChecked ? 'opacity-50' : 'opacity-1'
-        } text-[1.25rem] text-primary cursor-pointer`}
->>>>>>> fc8b4e5 (feat: toDoList 페이지 구현)
-=======
-        className={`block ml-20 max-sm:ml-16 w-[calc(100%_-_130px)] ${
-          todo.isChecked ? 'opacity-50' : 'opacity-1'
-        } text-[1.25rem] max-sm:text-[1rem] text-primary cursor-pointer`}
->>>>>>> 2bca0f1 (design: 반응형 깨지는 오류 수정)
         htmlFor={`checkbox${idx + 1}`}
       >
         {todo.text}
