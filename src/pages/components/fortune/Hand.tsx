@@ -7,7 +7,6 @@ export default function Hand() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const handRef = useRef<HTMLImageElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const isTouchBall = isTouch ? 'animate-shake' : 'animate-none';
   const router = useRouter();
 
@@ -20,22 +19,18 @@ export default function Hand() {
     setIsTouch(isVisible && true);
   };
 
+  const handleHandOut = () => {
+    setIsTouch(false);
+  };
+
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
       if (handRef.current) {
-        const halfWidth = handRef.current.offsetWidth / 2;
-        const halfHeight = handRef.current.offsetHeight / 2;
+        const halfWidth = handRef.current.offsetWidth;
+        const halfHeight = handRef.current.offsetHeight;
 
         handRef.current.style.left = `${e.pageX - halfWidth}px`;
         handRef.current.style.top = `${e.pageY - halfHeight}px`;
-      }
-    };
-
-    const handleOutSideMove = (e: MouseEvent) => {
-      const target = e.target as Node | null;
-
-      if (isTouch && !containerRef.current?.contains(target)) {
-        setIsTouch(false);
       }
     };
 
@@ -43,26 +38,20 @@ export default function Hand() {
     if (isTouch) {
       timer = setTimeout(() => {
         router.push('/fortune/result');
-      }, 3000);
+      }, 2000);
     }
 
-    window.addEventListener('mousemove', (e) => {
-      handleMove(e);
-      handleOutSideMove(e);
-    });
+    window.addEventListener('mousemove', handleMove);
 
     return () => {
-      window.removeEventListener('mousemove', (e) => {
-        handleMove(e);
-        handleOutSideMove(e);
-      });
+      window.removeEventListener('mousemove', handleMove);
 
       clearTimeout(timer);
     };
   }, [isTouch]);
 
   return (
-    <div className='text-center' ref={containerRef}>
+    <div className='text-center'>
       <div className='md:flex justify-center items-center mb-10 pt-5 pb-5 pl-5 md:pl-20 pr-5 md:pr-20 border-dotted border-white border-8 text-center md:text-left'>
         <p className='md:mr-2 text-[1.3rem] md:text-[1.6rem] text-primary break-keep'>
           <span className='shadow-[inset_0_-11px_white]'>손을 클릭하여</span>
@@ -91,7 +80,7 @@ export default function Hand() {
           )}
         </div>
       </div>
-      <Ball handleHandOver={handleHandOver} />
+      <Ball handleHandOver={handleHandOver} handleHandOut={handleHandOut} />
     </div>
   );
 }
