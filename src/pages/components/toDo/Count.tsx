@@ -5,7 +5,7 @@ export default function Count({ todo, filterItem }: CountProps) {
   const [count, setCount] = useState(0);
   const [totalKcal, setTotalKcal] = useState(0);
   const isVisible =
-    todo && todo.length === 0 ? 'before:hidden after:hidden 2xl:w-0 2xl:h-0' : 'before:block after:block';
+    todo && todo.length === 0 && 'hidden 2xl:w-0 2xl:h-0';
 
   useEffect(() => {
     if (todo) {
