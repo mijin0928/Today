@@ -8,7 +8,7 @@ export default function Ball({
   handleHandOut: () => void;
 }) {
   return (
-    <div className='relative w-[30rem] h-[18.75rem] m-auto' onMouseOver={handleHandOver} onMouseOut={handleHandOut}>
+    <div className='md:relative md:w-[30rem] md:h-[18.75rem] md:m-auto' onMouseOver={handleHandOver} onMouseOut={handleHandOut}>
       <Image
         className='md:absolute md:left-1/2 w-full md:translate-x-[-70%] md:w-[auto]'
         src='/crystal-ball.gif'
