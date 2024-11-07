@@ -46,7 +46,7 @@ export default function Gnb() {
   return (
     <nav>
       <ul
-        className={`${isVisible} lg:visible fixed top-0 right-0 lg:right-auto lg:w-auto lg:h-auto border-l lg:border-0 bg-white lg:bg-transparent z-[99] lg:mt-[6.25rem]`}
+        className={`${isVisible} fixed lg:visible lg:inline-block lg:top-1/2 lg:translate-y-[-50%] right-0 lg:right-auto lg:w-auto lg:h-auto border-l lg:border-0 bg-white lg:bg-transparent z-[99]`}
       >
         {GNB.map((gnb, i) => (
           <li
