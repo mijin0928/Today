@@ -9,6 +9,7 @@ export default function Hand() {
   const handRef = useRef<HTMLImageElement | null>(null);
   const isTouchBall = isTouch ? 'animate-shake' : 'animate-none';
   const router = useRouter();
+  const ballRef = useRef<HTMLDivElement | null>(null);
 
   const handleHandClick = () => {
     setIsVisible(true);
@@ -16,21 +17,27 @@ export default function Hand() {
   };
 
   const handleHandOver = () => {
-    setIsTouch(isVisible && true);
-  };
-
-  const handleHandOut = () => {
-    setIsTouch(false);
+    if (isVisible) {
+      setIsTouch(true);
+    }
   };
 
   useEffect(() => {
     const handleMove = (e: MouseEvent) => {
       if (handRef.current) {
-        const halfWidth = handRef.current.offsetWidth;
-        const halfHeight = handRef.current.offsetHeight;
+        const width = handRef.current.offsetWidth;
+        const height = handRef.current.offsetHeight;
 
-        handRef.current.style.left = `${e.pageX - halfWidth}px`;
-        handRef.current.style.top = `${e.pageY - halfHeight}px`;
+        handRef.current.style.left = `${e.pageX - width}px`;
+        handRef.current.style.top = `${e.pageY - height}px`;
+      }
+    };
+
+    const handleOutSideMove = (e: MouseEvent) => {
+      const target = e.target as Node | null;
+
+      if (isTouch && !ballRef.current?.contains(target)) {
+        setIsTouch(false);
       }
     };
 
@@ -41,10 +48,16 @@ export default function Hand() {
       }, 2000);
     }
 
-    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mousemove', (e) => {
+      handleMove(e);
+      handleOutSideMove(e);
+    });
 
     return () => {
-      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mousemove', (e) => {
+        handleMove(e);
+        handleOutSideMove(e);
+      });
 
       clearTimeout(timer);
     };
@@ -80,7 +93,9 @@ export default function Hand() {
           )}
         </div>
       </div>
-      <Ball handleHandOver={handleHandOver} handleHandOut={handleHandOut} />
+      <div ref={ballRef}>
+        <Ball handleHandOver={handleHandOver} />
+      </div>
     </div>
   );
 }
